@@ -1,0 +1,10 @@
+.map {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.maplibregl-ctrl-logo,
+.maplibregl-ctrl-attrib {
+  display: none !important;
+}

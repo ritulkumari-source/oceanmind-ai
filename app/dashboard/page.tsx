@@ -1,78 +1,95 @@
-import Sidebar from "../../components/Sidebar";
-import AIChatCard from "../../components/AIChatCard";
-import OceanMapCard from "../../components/OceanMapCard";
-import TemperatureChart from "../../components/TemperatureChart";
-import MarineAlerts from "../../components/MarineAlerts";
-import ReportsCard from "../../components/ReportsCards";
+"use client";
+
+import { useEffect, useState } from "react";
+
+import Sidebar from "../../components/layout/Sidebar";
+import Header from "../../components/dashboard/Header";
+import KPICards from "../../components/dashboard/KPICards";
+import QuickActions from "../../components/dashboard/QuickActions";
+import ChatCard from "../../components/dashboard/ChatCard";
+import MapCard from "../../components/dashboard/MapCard";
+import AnalyticsCard from "../../components/dashboard/AnalyticsCard";
+import AlertsCard from "../../components/dashboard/AlertsCard";
+import ReportsCard from "../../components/dashboard/ReportsCard";
 
 export default function Dashboard() {
-  return (
-    <main className="flex min-h-screen bg-slate-950 text-white">
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checking, setChecking] = useState(true);
 
-      {/* Sidebar */}
-      <Sidebar />
+  useEffect(() => {
+    const loginStatus = localStorage.getItem("oceanmind_logged_in");
 
-      {/* Main Content */}
-      <div className="flex-1 p-8 overflow-y-auto">
+    if (loginStatus === "true") {
+      setAuthenticated(true);
+    } else {
+      window.location.replace("/login");
+    }
 
-        {/* Header */}
-        <div className="mb-10">
-          <h1 className="text-5xl font-bold">
-            🌊 Ocean Dashboard
-          </h1>
+    setChecking(false);
+  }, []);
 
-          <p className="text-gray-400 mt-2">
-            AI-powered ocean intelligence platform
+  if (checking || !authenticated) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
+        <div className="text-center">
+          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-slate-700 border-t-cyan-400" />
+
+          <p className="mt-4 text-sm text-slate-400">
+            Loading OceanMind...
           </p>
         </div>
+      </main>
+    );
+  }
 
-        {/* KPI Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+  return (
+    <main className="flex min-h-screen w-full overflow-x-hidden bg-slate-950 text-white">
 
-          <div className="rounded-3xl bg-slate-800 p-6 border border-cyan-500/20">
-            <p className="text-gray-400">Ocean Records</p>
-            <h2 className="text-4xl font-bold text-cyan-400 mt-3">
-              1.8M
-            </h2>
+      {/* Sidebar */}
+
+      <Sidebar />
+
+      {/* Dashboard Content */}
+
+      <div className="relative min-w-0 flex-1 overflow-y-auto overflow-x-hidden">
+
+        {/* Background Blur Effects */}
+
+        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+
+        <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl" />
+
+        {/* Main Content */}
+
+        <div className="relative z-10 p-8">
+
+          <Header />
+
+          <KPICards />
+
+          <QuickActions />
+
+          {/* Chat + Map */}
+
+          <div className="mt-8 grid grid-cols-1 gap-8 xl:grid-cols-2">
+            <ChatCard />
+            <MapCard />
           </div>
 
-          <div className="rounded-3xl bg-slate-800 p-6 border border-cyan-500/20">
-            <p className="text-gray-400">ARGO Floats</p>
-            <h2 className="text-4xl font-bold text-cyan-400 mt-3">
-              4500
-            </h2>
+          {/* Analytics + Alerts */}
+
+          <div className="mt-8 grid grid-cols-1 gap-8 xl:grid-cols-2">
+            <AnalyticsCard />
+            <AlertsCard />
           </div>
 
-          <div className="rounded-3xl bg-slate-800 p-6 border border-cyan-500/20">
-            <p className="text-gray-400">Countries</p>
-            <h2 className="text-4xl font-bold text-cyan-400 mt-3">
-              190
-            </h2>
-          </div>
+          {/* Recent Reports */}
 
-          <div className="rounded-3xl bg-slate-800 p-6 border border-cyan-500/20">
-            <p className="text-gray-400">AI Accuracy</p>
-            <h2 className="text-4xl font-bold text-cyan-400 mt-3">
-              98%
-            </h2>
+          <div className="mt-8">
+            <ReportsCard />
           </div>
 
         </div>
-
-        {/* AI Chat + Map */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
-          <AIChatCard />
-          <OceanMapCard />
-        </div>
-
-        {/* Charts + Alerts */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
-          <TemperatureChart />
-          <MarineAlerts />
-        </div>
-
-        {/* Reports */}
-        <ReportsCard />
 
       </div>
 
