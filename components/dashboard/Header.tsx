@@ -19,50 +19,150 @@ export default function Header() {
   });
 
   return (
-    <header className="flex items-center justify-between mb-10">
+    <header className="mb-8 flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
+
+      {/* Greeting */}
 
       <div>
-
-        <p className="text-cyan-400 font-semibold text-lg">
+        <p className="text-lg font-semibold text-cyan-600">
           👋 {greeting}
         </p>
 
-        <h1 className="text-5xl font-bold mt-2">
+        <h1 className="mt-2 text-4xl font-bold tracking-tight text-[#0F2D3D] lg:text-5xl">
           Ocean Dashboard
         </h1>
 
-        <p className="text-slate-400 mt-3">
+        <p className="mt-3 text-sm text-[#718895]">
           {today}
         </p>
-
       </div>
 
-      <div className="flex items-center gap-4">
+      {/* Actions */}
 
-        <div className="relative">
+      <div className="flex flex-wrap items-center gap-3">
+
+        {/* Search */}
+
+        <div className="group relative">
 
           <Search
             size={18}
-            className="absolute left-4 top-3 text-slate-500"
+            className="
+              absolute
+              left-4
+              top-1/2
+              -translate-y-1/2
+              text-[#8AA4B0]
+              transition-colors
+              group-focus-within:text-cyan-500
+            "
           />
 
           <input
+            type="text"
             placeholder="Search oceans, reports..."
-            className="bg-slate-900 border border-slate-800 rounded-xl py-3 pl-11 pr-4 w-80 focus:outline-none focus:border-cyan-500 transition"
+            className="
+              w-72
+              rounded-xl
+              border
+              border-[#D8EAF0]
+              bg-white
+              py-3
+              pl-11
+              pr-4
+              text-sm
+              text-[#0F2D3D]
+              shadow-[0_4px_18px_rgba(30,90,110,0.05)]
+              outline-none
+              transition-all
+              duration-200
+              placeholder:text-[#8AA4B0]
+              hover:border-cyan-200
+              focus:border-cyan-400
+              focus:ring-4
+              focus:ring-cyan-100
+              lg:w-80
+            "
           />
 
         </div>
 
-        <button className="bg-slate-900 border border-slate-800 hover:border-cyan-500 transition p-3 rounded-xl">
-          <Bell />
+        {/* Notifications */}
+
+        <button
+          type="button"
+          aria-label="Notifications"
+          className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-[#D8EAF0]
+            bg-white
+            text-[#718895]
+            shadow-[0_4px_18px_rgba(30,90,110,0.05)]
+            transition-all
+            duration-200
+            hover:border-cyan-300
+            hover:bg-[#EAF6FA]
+            hover:text-cyan-600
+          "
+        >
+          <Bell size={19} />
         </button>
 
-        <button className="bg-slate-900 border border-slate-800 hover:border-cyan-500 transition p-3 rounded-xl">
-          <Settings />
+        {/* Settings */}
+
+        <button
+          type="button"
+          aria-label="Settings"
+          className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-[#D8EAF0]
+            bg-white
+            text-[#718895]
+            shadow-[0_4px_18px_rgba(30,90,110,0.05)]
+            transition-all
+            duration-200
+            hover:border-cyan-300
+            hover:bg-[#EAF6FA]
+            hover:text-cyan-600
+          "
+        >
+          <Settings size={19} />
         </button>
 
-        <Avatar className="h-11 w-11">
-          <AvatarFallback className="bg-cyan-500 text-white font-bold">
+        {/* Profile */}
+
+        <Avatar
+          className="
+            h-11
+            w-11
+            border-2
+            border-white
+            shadow-md
+            ring-2
+            ring-cyan-100
+          "
+        >
+          <AvatarFallback
+            className="
+              bg-gradient-to-br
+              from-cyan-400
+              to-blue-500
+              font-bold
+              text-white
+            "
+          >
             RK
           </AvatarFallback>
         </Avatar>

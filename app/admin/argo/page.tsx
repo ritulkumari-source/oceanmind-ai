@@ -2,18 +2,17 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+
 import {
   Activity,
   ArrowLeft,
   CheckCircle,
   Clock3,
   Database,
-  Download,
   MapPin,
   RefreshCw,
   Search,
   Waves,
-  XCircle,
 } from "lucide-react";
 
 import AdminSidebar from "../../../components/admin/AdminSidebar";
@@ -124,16 +123,12 @@ export default function ArgoDataPage() {
 
   const filteredProfiles = useMemo(() => {
     return profiles.filter((profile) => {
+      const searchValue = search.toLowerCase();
+
       const matchesSearch =
-        profile.name
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        profile.id
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        profile.location
-          .toLowerCase()
-          .includes(search.toLowerCase());
+        profile.name.toLowerCase().includes(searchValue) ||
+        profile.id.toLowerCase().includes(searchValue) ||
+        profile.location.toLowerCase().includes(searchValue);
 
       const matchesStatus =
         statusFilter === "All" ||
@@ -183,7 +178,7 @@ export default function ArgoDataPage() {
   }
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden bg-slate-950 text-white">
+    <main className="min-h-screen w-full overflow-x-hidden bg-[#DCEFF7] text-[#123247]">
 
       {/* Sidebar */}
 
@@ -195,19 +190,31 @@ export default function ArgoDataPage() {
 
         {/* Background Effects */}
 
-        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl" />
 
-        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-blue-300/20 blur-3xl" />
 
         <div className="relative z-10 p-8">
 
-          {/* Header */}
+          {/* ================================================= */}
+          {/* HEADER */}
+          {/* ================================================= */}
 
           <header className="mb-8">
 
             <Link
               href="/admin"
-              className="mb-5 inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-cyan-400"
+              className="
+                mb-5
+                inline-flex
+                items-center
+                gap-2
+                text-sm
+                font-medium
+                text-[#718895]
+                transition
+                hover:text-cyan-600
+              "
             >
               <ArrowLeft size={17} />
               Back to Overview
@@ -217,28 +224,56 @@ export default function ArgoDataPage() {
 
               <div>
 
-                <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-400">
+                <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-600">
+
                   <Waves size={17} />
+
                   ARGO DATA MANAGEMENT
+
                 </div>
 
-                <h1 className="text-4xl font-bold text-white md:text-5xl">
+                <h1 className="text-4xl font-bold text-[#123247] md:text-5xl">
                   ARGO Data
                 </h1>
 
-                <p className="mt-3 max-w-2xl text-slate-400">
+                <p className="mt-3 max-w-2xl text-[#52788C]">
                   View cached ARGO float profiles and manage
                   data synchronization.
                 </p>
 
               </div>
 
+              {/* Sync Button */}
+
               <button
                 type="button"
                 onClick={syncAllProfiles}
                 disabled={syncing}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-xl
+                  bg-gradient-to-r
+                  from-cyan-500
+                  to-blue-500
+                  px-5
+                  py-3
+                  font-semibold
+                  text-white
+                  shadow-md
+                  shadow-cyan-500/15
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:from-cyan-400
+                  hover:to-blue-400
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                "
               >
+
                 <RefreshCw
                   size={18}
                   className={syncing ? "animate-spin" : ""}
@@ -247,40 +282,54 @@ export default function ArgoDataPage() {
                 {syncing
                   ? "Syncing..."
                   : "Sync ARGO Data"}
+
               </button>
 
             </div>
 
           </header>
 
-          {/* Statistics */}
+          {/* ================================================= */}
+          {/* STATISTICS */}
+          {/* ================================================= */}
 
           <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
-            {/* Total */}
+            {/* Total Profiles */}
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50">
+
                   <Database
                     size={22}
-                    className="text-cyan-400"
+                    className="text-cyan-600"
                   />
+
                 </div>
 
-                <span className="text-xs text-slate-500">
+                <span className="text-xs font-semibold text-[#8AA3AF]">
                   Profiles
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Total ARGO Profiles
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 4,500+
               </p>
 
@@ -288,28 +337,39 @@ export default function ArgoDataPage() {
 
             {/* Cached */}
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-emerald-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50">
+
                   <CheckCircle
                     size={22}
-                    className="text-emerald-400"
+                    className="text-emerald-500"
                   />
+
                 </div>
 
-                <span className="text-xs text-emerald-400">
+                <span className="text-xs font-semibold text-emerald-600">
                   Ready
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Cached Profiles
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {cachedProfiles}
               </p>
 
@@ -317,28 +377,39 @@ export default function ArgoDataPage() {
 
             {/* Needs Sync */}
 
-            <div className="rounded-2xl border border-orange-500/20 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-orange-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50">
+
                   <RefreshCw
                     size={22}
-                    className="text-orange-400"
+                    className="text-orange-500"
                   />
+
                 </div>
 
-                <span className="text-xs text-orange-400">
+                <span className="text-xs font-semibold text-orange-600">
                   Pending
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Profiles Needing Sync
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {needsSyncProfiles}
               </p>
 
@@ -346,28 +417,39 @@ export default function ArgoDataPage() {
 
             {/* Last Sync */}
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50">
+
                   <Clock3
                     size={22}
-                    className="text-blue-400"
+                    className="text-blue-600"
                   />
+
                 </div>
 
-                <span className="text-xs text-blue-400">
+                <span className="text-xs font-semibold text-blue-600">
                   Sync
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Last Global Sync
               </p>
 
-              <p className="mt-1 text-lg font-bold text-white">
+              <p className="mt-1 text-lg font-bold text-[#123247]">
                 {lastGlobalSync}
               </p>
 
@@ -375,23 +457,35 @@ export default function ArgoDataPage() {
 
           </section>
 
-          {/* ARGO Profiles */}
+          {/* ================================================= */}
+          {/* ARGO PROFILES */}
+          {/* ================================================= */}
 
-          <section className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900">
+          <section
+            className="
+              mt-8
+              overflow-hidden
+              rounded-3xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+            "
+          >
 
             {/* Header */}
 
-            <div className="border-b border-slate-800 p-6">
+            <div className="border-b border-[#E1EEF3] p-6">
 
               <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
 
                 <div>
 
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-[#123247]">
                     Cached ARGO Profiles
                   </h2>
 
-                  <p className="mt-1 text-sm text-slate-400">
+                  <p className="mt-1 text-sm text-[#718895]">
                     Monitor stored profiles and trigger
                     individual data refreshes.
                   </p>
@@ -408,7 +502,7 @@ export default function ArgoDataPage() {
 
                     <Search
                       size={18}
-                      className="absolute left-3 top-3 text-slate-500"
+                      className="absolute left-3 top-3 text-[#8AA3AF]"
                     />
 
                     <input
@@ -418,7 +512,25 @@ export default function ArgoDataPage() {
                         setSearch(event.target.value)
                       }
                       placeholder="Search ARGO profiles..."
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 py-2.5 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-500 md:w-64"
+                      className="
+                        w-full
+                        rounded-xl
+                        border
+                        border-[#CFE5EE]
+                        bg-[#F8FCFE]
+                        py-2.5
+                        pl-10
+                        pr-4
+                        text-sm
+                        text-[#123247]
+                        outline-none
+                        transition
+                        placeholder:text-[#9BB2BD]
+                        focus:border-cyan-400
+                        focus:ring-4
+                        focus:ring-cyan-100
+                        md:w-64
+                      "
                     />
 
                   </div>
@@ -434,8 +546,22 @@ export default function ArgoDataPage() {
                           | ProfileStatus
                       )
                     }
-                    className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm text-slate-300 outline-none focus:border-cyan-500"
+                    className="
+                      rounded-xl
+                      border
+                      border-[#CFE5EE]
+                      bg-[#F8FCFE]
+                      px-4
+                      py-2.5
+                      text-sm
+                      text-[#52788C]
+                      outline-none
+                      focus:border-cyan-400
+                      focus:ring-4
+                      focus:ring-cyan-100
+                    "
                   >
+
                     <option value="All">
                       All Profiles
                     </option>
@@ -447,6 +573,7 @@ export default function ArgoDataPage() {
                     <option value="Needs Sync">
                       Needs Sync
                     </option>
+
                   </select>
 
                 </div>
@@ -455,7 +582,9 @@ export default function ArgoDataPage() {
 
             </div>
 
-            {/* Desktop Table */}
+            {/* ================================================= */}
+            {/* DESKTOP TABLE */}
+            {/* ================================================= */}
 
             <div className="hidden overflow-x-auto md:block">
 
@@ -463,33 +592,33 @@ export default function ArgoDataPage() {
 
                 <thead>
 
-                  <tr className="border-b border-slate-800 text-left">
+                  <tr className="border-b border-[#E1EEF3] text-left">
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Profile
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Location
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Temperature
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Salinity
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Depth
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Status
                     </th>
 
-                    <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Action
                     </th>
 
@@ -507,7 +636,12 @@ export default function ArgoDataPage() {
                     return (
                       <tr
                         key={profile.id}
-                        className="border-b border-slate-800/70 transition hover:bg-slate-950/60"
+                        className="
+                          border-b
+                          border-[#E8F1F5]
+                          transition
+                          hover:bg-[#F7FCFE]
+                        "
                       >
 
                         {/* Profile */}
@@ -516,20 +650,22 @@ export default function ArgoDataPage() {
 
                           <div className="flex items-center gap-4">
 
-                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10">
+                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-50">
+
                               <Waves
                                 size={20}
-                                className="text-cyan-400"
+                                className="text-cyan-600"
                               />
+
                             </div>
 
                             <div>
 
-                              <p className="font-semibold text-white">
+                              <p className="font-semibold text-[#123247]">
                                 {profile.name}
                               </p>
 
-                              <p className="mt-1 text-sm text-slate-500">
+                              <p className="mt-1 text-sm text-[#8AA3AF]">
                                 {profile.id}
                               </p>
 
@@ -547,16 +683,16 @@ export default function ArgoDataPage() {
 
                             <MapPin
                               size={16}
-                              className="text-slate-500"
+                              className="text-[#8AA3AF]"
                             />
 
                             <div>
 
-                              <p className="text-sm text-slate-300">
+                              <p className="text-sm text-[#52788C]">
                                 {profile.location}
                               </p>
 
-                              <p className="mt-1 text-xs text-slate-600">
+                              <p className="mt-1 text-xs text-[#9BB2BD]">
                                 {profile.latitude},{" "}
                                 {profile.longitude}
                               </p>
@@ -569,19 +705,19 @@ export default function ArgoDataPage() {
 
                         {/* Temperature */}
 
-                        <td className="px-6 py-5 text-sm text-slate-300">
+                        <td className="px-6 py-5 text-sm font-medium text-[#35596B]">
                           {profile.temperature}
                         </td>
 
                         {/* Salinity */}
 
-                        <td className="px-6 py-5 text-sm text-slate-300">
+                        <td className="px-6 py-5 text-sm font-medium text-[#35596B]">
                           {profile.salinity}
                         </td>
 
                         {/* Depth */}
 
-                        <td className="px-6 py-5 text-sm text-slate-300">
+                        <td className="px-6 py-5 text-sm font-medium text-[#35596B]">
                           {profile.depth}
                         </td>
 
@@ -590,26 +726,38 @@ export default function ArgoDataPage() {
                         <td className="px-6 py-5">
 
                           <span
-                            className={`inline-flex items-center gap-2 text-sm font-medium ${
-                              cached
-                                ? "text-emerald-400"
-                                : "text-orange-400"
-                            }`}
+                            className={`
+                              inline-flex
+                              items-center
+                              gap-2
+                              text-sm
+                              font-medium
+                              ${
+                                cached
+                                  ? "text-emerald-600"
+                                  : "text-orange-600"
+                              }
+                            `}
                           >
 
                             <span
-                              className={`h-2.5 w-2.5 rounded-full ${
-                                cached
-                                  ? "bg-emerald-400"
-                                  : "bg-orange-400"
-                              }`}
+                              className={`
+                                h-2.5
+                                w-2.5
+                                rounded-full
+                                ${
+                                  cached
+                                    ? "bg-emerald-400"
+                                    : "bg-orange-400"
+                                }
+                              `}
                             />
 
                             {profile.status}
 
                           </span>
 
-                          <p className="mt-1 text-xs text-slate-600">
+                          <p className="mt-1 text-xs text-[#9BB2BD]">
                             {profile.lastSync}
                           </p>
 
@@ -625,13 +773,34 @@ export default function ArgoDataPage() {
                               refreshProfile(profile.id)
                             }
                             disabled={cached}
-                            className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-xs font-semibold text-slate-300 transition hover:border-cyan-500 hover:text-cyan-400 disabled:cursor-default disabled:opacity-40"
+                            className="
+                              inline-flex
+                              items-center
+                              gap-2
+                              rounded-lg
+                              border
+                              border-[#CFE5EE]
+                              bg-white
+                              px-3
+                              py-2
+                              text-xs
+                              font-semibold
+                              text-[#52788C]
+                              transition
+                              hover:border-cyan-300
+                              hover:bg-cyan-50
+                              hover:text-cyan-600
+                              disabled:cursor-default
+                              disabled:opacity-40
+                            "
                           >
+
                             <RefreshCw size={14} />
 
                             {cached
                               ? "Synced"
                               : "Refresh"}
+
                           </button>
 
                         </td>
@@ -646,7 +815,9 @@ export default function ArgoDataPage() {
 
             </div>
 
-            {/* Mobile Cards */}
+            {/* ================================================= */}
+            {/* MOBILE CARDS */}
+            {/* ================================================= */}
 
             <div className="space-y-4 p-4 md:hidden">
 
@@ -658,27 +829,35 @@ export default function ArgoDataPage() {
                 return (
                   <div
                     key={profile.id}
-                    className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5"
+                    className="
+                      rounded-2xl
+                      border
+                      border-[#DCECF2]
+                      bg-[#F8FCFE]
+                      p-5
+                    "
                   >
 
                     <div className="flex items-start justify-between gap-4">
 
                       <div className="flex items-center gap-3">
 
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50">
+
                           <Waves
                             size={18}
-                            className="text-cyan-400"
+                            className="text-cyan-600"
                           />
+
                         </div>
 
                         <div>
 
-                          <p className="font-semibold text-white">
+                          <p className="font-semibold text-[#123247]">
                             {profile.name}
                           </p>
 
-                          <p className="mt-1 text-xs text-slate-500">
+                          <p className="mt-1 text-xs text-[#8AA3AF]">
                             {profile.id}
                           </p>
 
@@ -687,55 +866,62 @@ export default function ArgoDataPage() {
                       </div>
 
                       <span
-                        className={`text-xs font-semibold ${
-                          cached
-                            ? "text-emerald-400"
-                            : "text-orange-400"
-                        }`}
+                        className={`
+                          text-xs
+                          font-semibold
+                          ${
+                            cached
+                              ? "text-emerald-600"
+                              : "text-orange-600"
+                          }
+                        `}
                       >
                         {profile.status}
                       </span>
 
                     </div>
 
-                    <div className="mt-4 flex items-center gap-2 text-sm text-slate-400">
+                    <div className="mt-4 flex items-center gap-2 text-sm text-[#718895]">
+
                       <MapPin size={15} />
+
                       {profile.location}
+
                     </div>
 
                     <div className="mt-4 grid grid-cols-3 gap-2">
 
-                      <div className="rounded-xl bg-slate-900 p-3">
+                      <div className="rounded-xl border border-[#DCECF2] bg-white p-3">
 
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-[#8AA3AF]">
                           Temperature
                         </p>
 
-                        <p className="mt-1 text-sm font-semibold text-white">
+                        <p className="mt-1 text-sm font-semibold text-[#123247]">
                           {profile.temperature}
                         </p>
 
                       </div>
 
-                      <div className="rounded-xl bg-slate-900 p-3">
+                      <div className="rounded-xl border border-[#DCECF2] bg-white p-3">
 
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-[#8AA3AF]">
                           Salinity
                         </p>
 
-                        <p className="mt-1 text-sm font-semibold text-white">
+                        <p className="mt-1 text-sm font-semibold text-[#123247]">
                           {profile.salinity}
                         </p>
 
                       </div>
 
-                      <div className="rounded-xl bg-slate-900 p-3">
+                      <div className="rounded-xl border border-[#DCECF2] bg-white p-3">
 
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-[#8AA3AF]">
                           Depth
                         </p>
 
-                        <p className="mt-1 text-sm font-semibold text-white">
+                        <p className="mt-1 text-sm font-semibold text-[#123247]">
                           {profile.depth}
                         </p>
 
@@ -745,9 +931,12 @@ export default function ArgoDataPage() {
 
                     <div className="mt-4 flex items-center justify-between">
 
-                      <span className="flex items-center gap-2 text-xs text-slate-600">
+                      <span className="flex items-center gap-2 text-xs text-[#8AA3AF]">
+
                         <Clock3 size={14} />
+
                         {profile.lastSync}
+
                       </span>
 
                       <button
@@ -756,12 +945,33 @@ export default function ArgoDataPage() {
                           refreshProfile(profile.id)
                         }
                         disabled={cached}
-                        className="flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-xs font-semibold text-slate-300 hover:border-cyan-500 hover:text-cyan-400 disabled:opacity-40"
+                        className="
+                          flex
+                          items-center
+                          gap-2
+                          rounded-lg
+                          border
+                          border-[#CFE5EE]
+                          bg-white
+                          px-3
+                          py-2
+                          text-xs
+                          font-semibold
+                          text-[#52788C]
+                          transition
+                          hover:border-cyan-300
+                          hover:bg-cyan-50
+                          hover:text-cyan-600
+                          disabled:opacity-40
+                        "
                       >
+
                         <RefreshCw size={14} />
+
                         {cached
                           ? "Synced"
                           : "Refresh"}
+
                       </button>
 
                     </div>
@@ -780,14 +990,14 @@ export default function ArgoDataPage() {
 
                 <Database
                   size={42}
-                  className="mx-auto text-slate-700"
+                  className="mx-auto text-[#A7BBC4]"
                 />
 
-                <h3 className="mt-4 text-lg font-semibold text-white">
+                <h3 className="mt-4 text-lg font-semibold text-[#123247]">
                   No ARGO profiles found
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-[#718895]">
                   Try changing your search or filter.
                 </p>
 
@@ -797,27 +1007,33 @@ export default function ArgoDataPage() {
 
             {/* Footer */}
 
-            <div className="border-t border-slate-800 px-6 py-4">
+            <div className="border-t border-[#E1EEF3] px-6 py-4">
 
-              <div className="flex flex-col gap-2 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col gap-2 text-sm text-[#718895] sm:flex-row sm:items-center sm:justify-between">
 
                 <span>
+
                   Showing{" "}
-                  <span className="font-semibold text-slate-300">
+
+                  <span className="font-semibold text-[#35596B]">
                     {filteredProfiles.length}
                   </span>{" "}
+
                   of{" "}
-                  <span className="font-semibold text-slate-300">
+
+                  <span className="font-semibold text-[#35596B]">
                     {profiles.length}
                   </span>{" "}
+
                   profiles
+
                 </span>
 
                 <span className="flex items-center gap-2">
 
                   <Activity
                     size={15}
-                    className="text-cyan-400"
+                    className="text-cyan-600"
                   />
 
                   ARGO cache monitoring active
@@ -830,22 +1046,36 @@ export default function ArgoDataPage() {
 
           </section>
 
-          {/* System Note */}
+          {/* ================================================= */}
+          {/* SYSTEM NOTE */}
+          {/* ================================================= */}
 
-          <div className="mt-6 flex items-start gap-3 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-5">
+          <div
+            className="
+              mt-6
+              flex
+              items-start
+              gap-3
+              rounded-2xl
+              border
+              border-cyan-100
+              bg-cyan-50
+              p-5
+            "
+          >
 
             <Database
               size={20}
-              className="mt-0.5 shrink-0 text-cyan-400"
+              className="mt-0.5 shrink-0 text-cyan-600"
             />
 
             <div>
 
-              <p className="font-semibold text-cyan-300">
+              <p className="font-semibold text-cyan-700">
                 ARGO cache
               </p>
 
-              <p className="mt-1 text-sm leading-6 text-slate-400">
+              <p className="mt-1 text-sm leading-6 text-[#718895]">
                 The profiles shown here are currently
                 demonstration data. The backend ARGO service
                 can replace these values with live cached

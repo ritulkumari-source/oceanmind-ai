@@ -30,64 +30,148 @@ export default function Dashboard() {
 
   if (checking || !authenticated) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
+      <main className="flex min-h-screen items-center justify-center bg-[#DCEFF7]">
         <div className="text-center">
-          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-slate-700 border-t-cyan-400" />
 
-          <p className="mt-4 text-sm text-slate-400">
+          <div
+            className="
+              mx-auto
+              flex
+              h-14
+              w-14
+              items-center
+              justify-center
+              rounded-2xl
+              bg-gradient-to-br
+              from-cyan-400
+              to-blue-500
+              shadow-lg
+              shadow-cyan-500/25
+            "
+          >
+            <span className="text-xl">
+              🌊
+            </span>
+          </div>
+
+          <p className="mt-4 text-sm font-medium text-[#52788C]">
             Loading OceanMind...
           </p>
+
         </div>
       </main>
     );
   }
 
   return (
-    <main className="flex min-h-screen w-full overflow-x-hidden bg-slate-950 text-white">
+    <main className="flex min-h-screen bg-[#DCEFF7] text-[#123247]">
 
-      {/* Sidebar */}
+      {/* SIDEBAR */}
 
       <Sidebar />
 
-      {/* Dashboard Content */}
+      {/* DASHBOARD */}
 
-      <div className="relative min-w-0 flex-1 overflow-y-auto overflow-x-hidden">
+      <div
+        className="
+          relative
+          min-w-0
+          flex-1
+          overflow-y-auto
+          overflow-x-hidden
+          bg-[#DCEFF7]
+        "
+      >
 
-        {/* Background Blur Effects */}
+        {/* BLUE OCEAN GLOW */}
 
-        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -right-40
+            -top-40
+            h-[500px]
+            w-[500px]
+            rounded-full
+            bg-cyan-400/15
+            blur-3xl
+          "
+        />
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl" />
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -bottom-32
+            -left-32
+            h-[450px]
+            w-[450px]
+            rounded-full
+            bg-blue-500/10
+            blur-3xl
+          "
+        />
 
-        {/* Main Content */}
+        {/* SUBTLE CENTER GLOW */}
 
-        <div className="relative z-10 p-8">
+        <div
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-1/2
+            h-[500px]
+            w-[500px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            bg-cyan-300/5
+            blur-3xl
+          "
+        />
+
+        {/* MAIN CONTENT */}
+
+        <div className="relative z-10 p-6 md:p-8">
+
+          {/* HEADER */}
 
           <Header />
 
-          <KPICards />
+          {/* KPI CARDS */}
 
-          <QuickActions />
+          <div className="mt-8">
+            <KPICards />
+          </div>
 
-          {/* Chat + Map */}
+          {/* QUICK ACTIONS */}
+
+          <div className="mt-8">
+            <QuickActions />
+          </div>
+
+          {/* CHAT + MAP */}
 
           <div className="mt-8 grid grid-cols-1 gap-8 xl:grid-cols-2">
             <ChatCard />
             <MapCard />
           </div>
 
-          {/* Analytics + Alerts */}
+          {/* ANALYTICS + ALERTS */}
 
           <div className="mt-8 grid grid-cols-1 gap-8 xl:grid-cols-2">
             <AnalyticsCard />
             <AlertsCard />
           </div>
 
-          {/* Recent Reports */}
+          {/* REPORTS */}
 
           <div className="mt-8">
             <ReportsCard />
           </div>
+
+          <div className="h-8" />
 
         </div>
 

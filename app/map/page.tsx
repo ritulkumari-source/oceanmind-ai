@@ -14,25 +14,61 @@ import OceanMap from "../../components/map/OceanMap";
 
 export default function MapPage() {
   return (
-    <main className="flex min-h-screen bg-slate-950 text-white">
+    <main className="flex min-h-screen bg-[#DCEFF7] text-[#123247]">
 
-      {/* Sidebar */}
+      {/* =====================================================
+          SIDEBAR
+      ====================================================== */}
 
       <Sidebar />
 
-      {/* Main Content */}
+      {/* =====================================================
+          MAIN CONTENT
+      ====================================================== */}
 
-      <div className="relative flex-1 overflow-y-auto">
+      <div className="relative min-w-0 flex-1 overflow-y-auto overflow-x-hidden">
 
-        {/* Background Effects */}
+        {/* ===================================================
+            OCEAN BACKGROUND EFFECTS
+        ==================================================== */}
 
-        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -right-40
+            -top-40
+            h-[500px]
+            w-[500px]
+            rounded-full
+            bg-cyan-400/15
+            blur-3xl
+          "
+        />
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -bottom-40
+            -left-40
+            h-[450px]
+            w-[450px]
+            rounded-full
+            bg-blue-500/10
+            blur-3xl
+          "
+        />
 
-        <div className="relative z-10 p-8">
+        {/* ===================================================
+            PAGE CONTENT
+        ==================================================== */}
 
-          {/* Header */}
+        <div className="relative z-10 p-6 md:p-8">
+
+          {/* =================================================
+              HEADER
+          ================================================== */}
 
           <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
@@ -40,117 +76,267 @@ export default function MapPage() {
 
               <div className="mb-3 flex items-center gap-3">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/10">
+                {/* Icon */}
+
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    bg-gradient-to-br
+                    from-cyan-400
+                    to-blue-500
+                    shadow-lg
+                    shadow-cyan-500/20
+                  "
+                >
                   <Waves
                     size={26}
-                    className="text-cyan-400"
+                    className="text-white"
                   />
                 </div>
 
                 <div>
-                  <p className="text-sm font-medium uppercase tracking-wider text-cyan-400">
+
+                  <p
+                    className="
+                      text-sm
+                      font-semibold
+                      uppercase
+                      tracking-wider
+                      text-cyan-600
+                    "
+                  >
                     Ocean Intelligence
                   </p>
 
-                  <h1 className="text-3xl font-bold">
+                  <h1 className="mt-1 text-3xl font-bold text-[#123247]">
                     Ocean Map
                   </h1>
+
                 </div>
 
               </div>
 
-              <p className="max-w-2xl text-slate-400">
+              <p className="max-w-2xl text-[#52788C]">
                 Explore oceanographic data and monitor marine
                 conditions through an interactive global map.
               </p>
 
             </div>
 
-            {/* Back to Dashboard */}
+            {/* Back Button */}
 
             <Link
               href="/dashboard"
-              className="inline-flex w-fit items-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-medium text-slate-300 transition hover:border-cyan-400/50 hover:bg-slate-800 hover:text-cyan-400"
+              className="
+                inline-flex
+                w-fit
+                items-center
+                gap-2
+                rounded-xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                px-5
+                py-3
+                text-sm
+                font-semibold
+                text-[#52788C]
+                shadow-[0_4px_18px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-200
+                hover:-translate-y-0.5
+                hover:border-cyan-300
+                hover:bg-cyan-50
+                hover:text-cyan-600
+              "
             >
               <ArrowLeft size={18} />
+
               Back to Dashboard
             </Link>
 
           </div>
 
-          {/* Stats */}
+          {/* =================================================
+              STATS
+          ================================================== */}
 
           <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+            {/* Map Coverage */}
+
+            <div
+              className="
+                rounded-2xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-5
+                shadow-[0_6px_25px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:border-cyan-200
+                hover:shadow-[0_10px_30px_rgba(6,182,212,0.10)]
+              "
+            >
 
               <div className="flex items-center gap-3">
 
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10">
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-gradient-to-br
+                    from-cyan-50
+                    to-blue-50
+                    ring-1
+                    ring-cyan-100
+                  "
+                >
                   <Map
                     size={20}
-                    className="text-cyan-400"
+                    className="text-cyan-500"
                   />
                 </div>
 
                 <div>
-                  <p className="text-sm text-slate-500">
+
+                  <p className="text-sm text-[#718895]">
                     Map Coverage
                   </p>
 
-                  <p className="text-xl font-bold">
+                  <p className="text-xl font-bold text-[#123247]">
                     Global
                   </p>
+
                 </div>
 
               </div>
 
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+            {/* Data Layers */}
+
+            <div
+              className="
+                rounded-2xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-5
+                shadow-[0_6px_25px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:border-cyan-200
+                hover:shadow-[0_10px_30px_rgba(6,182,212,0.10)]
+              "
+            >
 
               <div className="flex items-center gap-3">
 
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10">
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-gradient-to-br
+                    from-cyan-50
+                    to-blue-50
+                    ring-1
+                    ring-cyan-100
+                  "
+                >
                   <Layers3
                     size={20}
-                    className="text-blue-400"
+                    className="text-blue-500"
                   />
                 </div>
 
                 <div>
-                  <p className="text-sm text-slate-500">
+
+                  <p className="text-sm text-[#718895]">
                     Data Layers
                   </p>
 
-                  <p className="text-xl font-bold">
+                  <p className="text-xl font-bold text-[#123247]">
                     Ocean Data
                   </p>
+
                 </div>
 
               </div>
 
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+            {/* Data Status */}
+
+            <div
+              className="
+                rounded-2xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-5
+                shadow-[0_6px_25px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:border-cyan-200
+                hover:shadow-[0_10px_30px_rgba(6,182,212,0.10)]
+              "
+            >
 
               <div className="flex items-center gap-3">
 
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-500/10">
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-emerald-50
+                    ring-1
+                    ring-emerald-100
+                  "
+                >
                   <Activity
                     size={20}
-                    className="text-green-400"
+                    className="text-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <p className="text-sm text-slate-500">
+
+                  <p className="text-sm text-[#718895]">
                     Data Status
                   </p>
 
-                  <p className="text-xl font-bold text-green-400">
-                    Live
-                  </p>
+                  <div className="mt-1 flex items-center gap-2">
+
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+
+                    <p className="text-xl font-bold text-emerald-600">
+                      Live
+                    </p>
+
+                  </div>
+
                 </div>
 
               </div>
@@ -159,9 +345,21 @@ export default function MapPage() {
 
           </div>
 
-          {/* Map */}
+          {/* =================================================
+              MAP
+          ================================================== */}
 
-          <section className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 p-3 shadow-2xl">
+          <section
+            className="
+              overflow-hidden
+              rounded-3xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              p-3
+              shadow-[0_10px_40px_rgba(30,90,110,0.10)]
+            "
+          >
 
             <div className="overflow-hidden rounded-2xl">
 

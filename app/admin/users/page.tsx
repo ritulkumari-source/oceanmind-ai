@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+
 import {
   ArrowLeft,
   Search,
@@ -83,27 +84,48 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>(initialUsers);
 
   const [search, setSearch] = useState("");
-  const [roleFilter, setRoleFilter] = useState<"All" | UserRole>("All");
+
+  const [roleFilter, setRoleFilter] =
+    useState<"All" | UserRole>("All");
+
   const [statusFilter, setStatusFilter] =
     useState<"All" | UserStatus>("All");
 
-  const [openMenu, setOpenMenu] = useState<number | null>(null);
+  const [openMenu, setOpenMenu] =
+    useState<number | null>(null);
 
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
+      const searchValue = search.toLowerCase();
+
       const matchesSearch =
-        user.name.toLowerCase().includes(search.toLowerCase()) ||
-        user.email.toLowerCase().includes(search.toLowerCase());
+        user.name
+          .toLowerCase()
+          .includes(searchValue) ||
+        user.email
+          .toLowerCase()
+          .includes(searchValue);
 
       const matchesRole =
-        roleFilter === "All" || user.role === roleFilter;
+        roleFilter === "All" ||
+        user.role === roleFilter;
 
       const matchesStatus =
-        statusFilter === "All" || user.status === statusFilter;
+        statusFilter === "All" ||
+        user.status === statusFilter;
 
-      return matchesSearch && matchesRole && matchesStatus;
+      return (
+        matchesSearch &&
+        matchesRole &&
+        matchesStatus
+      );
     });
-  }, [users, search, roleFilter, statusFilter]);
+  }, [
+    users,
+    search,
+    roleFilter,
+    statusFilter,
+  ]);
 
   const activeUsers = users.filter(
     (user) => user.status === "Active"
@@ -141,7 +163,10 @@ export default function AdminUsersPage() {
         user.id === id
           ? {
               ...user,
-              role: user.role === "User" ? "Admin" : "User",
+              role:
+                user.role === "User"
+                  ? "Admin"
+                  : "User",
             }
           : user
       )
@@ -151,175 +176,236 @@ export default function AdminUsersPage() {
   }
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden bg-slate-950 text-white">
+    <main className="min-h-screen w-full overflow-x-hidden bg-[#DCEFF7] text-[#123247]">
 
-      {/* Sidebar */}
+      {/* ================================================= */}
+      {/* SIDEBAR */}
+      {/* ================================================= */}
 
       <AdminSidebar />
 
-      {/* Main Content */}
+      {/* ================================================= */}
+      {/* MAIN CONTENT */}
+      {/* ================================================= */}
 
       <div className="relative ml-[252px] min-h-screen min-w-0 overflow-x-hidden">
 
         {/* Background Effects */}
 
-        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl" />
 
-        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-blue-300/20 blur-3xl" />
 
         <div className="relative z-10 p-8">
 
-          {/* Header */}
+          {/* ================================================= */}
+          {/* HEADER */}
+          {/* ================================================= */}
 
           <header className="mb-8">
 
             <Link
               href="/admin"
-              className="mb-5 inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-cyan-400"
+              className="
+                mb-5
+                inline-flex
+                items-center
+                gap-2
+                text-sm
+                font-medium
+                text-[#718895]
+                transition
+                hover:text-cyan-600
+              "
             >
               <ArrowLeft size={17} />
               Back to Overview
             </Link>
 
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div>
 
-              <div>
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-600">
 
-                <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-400">
-                  <Users size={17} />
-                  USER MANAGEMENT
-                </div>
+                <Users size={17} />
 
-                <h1 className="text-4xl font-bold text-white md:text-5xl">
-                  Users
-                </h1>
-
-                <p className="mt-3 text-slate-400">
-                  View and manage OceanMind platform users,
-                  roles, and account status.
-                </p>
+                USER MANAGEMENT
 
               </div>
+
+              <h1 className="text-4xl font-bold text-[#123247] md:text-5xl">
+                Users
+              </h1>
+
+              <p className="mt-3 max-w-2xl text-[#52788C]">
+                View and manage OceanMind platform users,
+                roles, and account status.
+              </p>
 
             </div>
 
           </header>
 
-          {/* Statistics */}
+          {/* ================================================= */}
+          {/* STATISTICS */}
+          {/* ================================================= */}
 
           <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
-            {/* Total */}
+            {/* Total Users */}
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50">
+
                   <Users
                     size={22}
-                    className="text-cyan-400"
+                    className="text-cyan-600"
                   />
+
                 </div>
 
-                <span className="text-xs text-slate-500">
+                <span className="text-xs font-semibold text-[#8AA3AF]">
                   Platform
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Total Users
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {users.length}
               </p>
 
             </div>
 
-            {/* Active */}
+            {/* Active Users */}
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-emerald-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50">
+
                   <UserCheck
                     size={22}
-                    className="text-emerald-400"
+                    className="text-emerald-500"
                   />
+
                 </div>
 
-                <span className="text-xs text-emerald-400">
+                <span className="text-xs font-semibold text-emerald-600">
                   Active
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Active Users
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {activeUsers}
               </p>
 
             </div>
 
-            {/* Inactive */}
+            {/* Inactive Users */}
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-red-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50">
+
                   <UserX
                     size={22}
-                    className="text-red-400"
+                    className="text-red-500"
                   />
+
                 </div>
 
-                <span className="text-xs text-red-400">
+                <span className="text-xs font-semibold text-red-600">
                   Inactive
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Inactive Users
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {inactiveUsers}
               </p>
 
             </div>
 
-            {/* Admins */}
+            {/* Administrators */}
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-purple-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50">
+
                   <ShieldCheck
                     size={22}
-                    className="text-purple-400"
+                    className="text-purple-500"
                   />
+
                 </div>
 
-                <span className="text-xs text-purple-400">
+                <span className="text-xs font-semibold text-purple-600">
                   Admin
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Administrators
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {adminUsers}
               </p>
 
@@ -327,23 +413,35 @@ export default function AdminUsersPage() {
 
           </section>
 
-          {/* Users Table */}
+          {/* ================================================= */}
+          {/* USERS TABLE */}
+          {/* ================================================= */}
 
-          <section className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900">
+          <section
+            className="
+              mt-8
+              overflow-hidden
+              rounded-3xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+            "
+          >
 
             {/* Table Header */}
 
-            <div className="border-b border-slate-800 p-6">
+            <div className="border-b border-[#E1EEF3] p-6">
 
               <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
 
                 <div>
 
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-[#123247]">
                     Platform Users
                   </h2>
 
-                  <p className="mt-1 text-sm text-slate-400">
+                  <p className="mt-1 text-sm text-[#718895]">
                     Manage account access and user roles.
                   </p>
 
@@ -359,7 +457,7 @@ export default function AdminUsersPage() {
 
                     <Search
                       size={18}
-                      className="absolute left-3 top-3 text-slate-500"
+                      className="absolute left-3 top-3 text-[#8AA3AF]"
                     />
 
                     <input
@@ -369,7 +467,25 @@ export default function AdminUsersPage() {
                         setSearch(event.target.value)
                       }
                       placeholder="Search users..."
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 py-2.5 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-500 md:w-64"
+                      className="
+                        w-full
+                        rounded-xl
+                        border
+                        border-[#CFE5EE]
+                        bg-[#F8FCFE]
+                        py-2.5
+                        pl-10
+                        pr-4
+                        text-sm
+                        text-[#123247]
+                        outline-none
+                        placeholder:text-[#9BB2BD]
+                        transition
+                        focus:border-cyan-400
+                        focus:ring-4
+                        focus:ring-cyan-100
+                        md:w-64
+                      "
                     />
 
                   </div>
@@ -385,8 +501,22 @@ export default function AdminUsersPage() {
                           | UserRole
                       )
                     }
-                    className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm text-slate-300 outline-none focus:border-cyan-500"
+                    className="
+                      rounded-xl
+                      border
+                      border-[#CFE5EE]
+                      bg-[#F8FCFE]
+                      px-4
+                      py-2.5
+                      text-sm
+                      text-[#52788C]
+                      outline-none
+                      focus:border-cyan-400
+                      focus:ring-4
+                      focus:ring-cyan-100
+                    "
                   >
+
                     <option value="All">
                       All Roles
                     </option>
@@ -398,6 +528,7 @@ export default function AdminUsersPage() {
                     <option value="Admin">
                       Admin
                     </option>
+
                   </select>
 
                   {/* Status */}
@@ -411,8 +542,22 @@ export default function AdminUsersPage() {
                           | UserStatus
                       )
                     }
-                    className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm text-slate-300 outline-none focus:border-cyan-500"
+                    className="
+                      rounded-xl
+                      border
+                      border-[#CFE5EE]
+                      bg-[#F8FCFE]
+                      px-4
+                      py-2.5
+                      text-sm
+                      text-[#52788C]
+                      outline-none
+                      focus:border-cyan-400
+                      focus:ring-4
+                      focus:ring-cyan-100
+                    "
                   >
+
                     <option value="All">
                       All Status
                     </option>
@@ -424,6 +569,7 @@ export default function AdminUsersPage() {
                     <option value="Inactive">
                       Inactive
                     </option>
+
                   </select>
 
                 </div>
@@ -432,7 +578,9 @@ export default function AdminUsersPage() {
 
             </div>
 
-            {/* Desktop Table */}
+            {/* ================================================= */}
+            {/* DESKTOP TABLE */}
+            {/* ================================================= */}
 
             <div className="hidden overflow-x-auto md:block">
 
@@ -440,25 +588,25 @@ export default function AdminUsersPage() {
 
                 <thead>
 
-                  <tr className="border-b border-slate-800 text-left">
+                  <tr className="border-b border-[#E1EEF3] text-left">
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       User
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Role
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Status
                     </th>
 
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Joined
                     </th>
 
-                    <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-[#8AA3AF]">
                       Actions
                     </th>
 
@@ -472,7 +620,12 @@ export default function AdminUsersPage() {
 
                     <tr
                       key={user.id}
-                      className="border-b border-slate-800/70 transition hover:bg-slate-950/60"
+                      className="
+                        border-b
+                        border-[#E8F1F5]
+                        transition
+                        hover:bg-[#F7FCFE]
+                      "
                     >
 
                       {/* User */}
@@ -481,19 +634,21 @@ export default function AdminUsersPage() {
 
                         <div className="flex items-center gap-4">
 
-                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cyan-500/10 font-bold text-cyan-400">
+                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cyan-50 font-bold text-cyan-600">
+
                             {user.name
                               .charAt(0)
                               .toUpperCase()}
+
                           </div>
 
                           <div>
 
-                            <p className="font-semibold text-white">
+                            <p className="font-semibold text-[#123247]">
                               {user.name}
                             </p>
 
-                            <p className="mt-1 text-sm text-slate-500">
+                            <p className="mt-1 text-sm text-[#8AA3AF]">
                               {user.email}
                             </p>
 
@@ -508,11 +663,21 @@ export default function AdminUsersPage() {
                       <td className="px-6 py-5">
 
                         <span
-                          className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold ${
-                            user.role === "Admin"
-                              ? "bg-purple-500/10 text-purple-400"
-                              : "bg-cyan-500/10 text-cyan-400"
-                          }`}
+                          className={`
+                            inline-flex
+                            items-center
+                            gap-2
+                            rounded-full
+                            px-3
+                            py-1.5
+                            text-xs
+                            font-semibold
+                            ${
+                              user.role === "Admin"
+                                ? "bg-purple-50 text-purple-600"
+                                : "bg-cyan-50 text-cyan-700"
+                            }
+                          `}
                         >
 
                           {user.role === "Admin" && (
@@ -530,11 +695,18 @@ export default function AdminUsersPage() {
                       <td className="px-6 py-5">
 
                         <span
-                          className={`inline-flex items-center gap-2 text-sm font-medium ${
-                            user.status === "Active"
-                              ? "text-emerald-400"
-                              : "text-red-400"
-                          }`}
+                          className={`
+                            inline-flex
+                            items-center
+                            gap-2
+                            text-sm
+                            font-medium
+                            ${
+                              user.status === "Active"
+                                ? "text-emerald-600"
+                                : "text-red-500"
+                            }
+                          `}
                         >
 
                           {user.status === "Active" ? (
@@ -551,7 +723,7 @@ export default function AdminUsersPage() {
 
                       {/* Joined */}
 
-                      <td className="px-6 py-5 text-sm text-slate-400">
+                      <td className="px-6 py-5 text-sm text-[#718895]">
                         {user.joined}
                       </td>
 
@@ -568,21 +740,54 @@ export default function AdminUsersPage() {
                                 : user.id
                             )
                           }
-                          className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-800 hover:text-white"
+                          className="
+                            rounded-lg
+                            p-2
+                            text-[#8AA3AF]
+                            transition
+                            hover:bg-cyan-50
+                            hover:text-cyan-600
+                          "
                         >
                           <MoreVertical size={19} />
                         </button>
 
                         {openMenu === user.id && (
 
-                          <div className="absolute right-6 top-14 z-30 w-52 rounded-xl border border-slate-700 bg-slate-950 p-2 text-left shadow-2xl">
+                          <div
+                            className="
+                              absolute
+                              right-6
+                              top-14
+                              z-30
+                              w-52
+                              rounded-xl
+                              border
+                              border-[#CFE5EE]
+                              bg-white
+                              p-2
+                              text-left
+                              shadow-xl
+                            "
+                          >
 
                             <button
                               type="button"
                               onClick={() =>
                                 toggleStatus(user.id)
                               }
-                              className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-300 transition hover:bg-slate-900 hover:text-white"
+                              className="
+                                w-full
+                                rounded-lg
+                                px-3
+                                py-2.5
+                                text-left
+                                text-sm
+                                text-[#52788C]
+                                transition
+                                hover:bg-cyan-50
+                                hover:text-cyan-700
+                              "
                             >
                               {user.status === "Active"
                                 ? "Deactivate User"
@@ -594,7 +799,18 @@ export default function AdminUsersPage() {
                               onClick={() =>
                                 toggleRole(user.id)
                               }
-                              className="w-full rounded-lg px-3 py-2.5 text-sm text-slate-300 transition hover:bg-slate-900 hover:text-white"
+                              className="
+                                w-full
+                                rounded-lg
+                                px-3
+                                py-2.5
+                                text-left
+                                text-sm
+                                text-[#52788C]
+                                transition
+                                hover:bg-cyan-50
+                                hover:text-cyan-700
+                              "
                             >
                               {user.role === "Admin"
                                 ? "Make User"
@@ -617,7 +833,9 @@ export default function AdminUsersPage() {
 
             </div>
 
-            {/* Mobile Cards */}
+            {/* ================================================= */}
+            {/* MOBILE CARDS */}
+            {/* ================================================= */}
 
             <div className="space-y-3 p-4 md:hidden">
 
@@ -625,24 +843,32 @@ export default function AdminUsersPage() {
 
                 <div
                   key={user.id}
-                  className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4"
+                  className="
+                    rounded-2xl
+                    border
+                    border-[#DCECF2]
+                    bg-[#F8FCFE]
+                    p-4
+                  "
                 >
 
                   <div className="flex items-start justify-between gap-4">
 
                     <div className="flex items-center gap-3">
 
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500/10 font-bold text-cyan-400">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-50 font-bold text-cyan-600">
+
                         {user.name.charAt(0)}
+
                       </div>
 
                       <div>
 
-                        <p className="font-semibold text-white">
+                        <p className="font-semibold text-[#123247]">
                           {user.name}
                         </p>
 
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-[#8AA3AF]">
                           {user.email}
                         </p>
 
@@ -659,7 +885,13 @@ export default function AdminUsersPage() {
                             : user.id
                         )
                       }
-                      className="rounded-lg p-2 text-slate-500 hover:bg-slate-800 hover:text-white"
+                      className="
+                        rounded-lg
+                        p-2
+                        text-[#8AA3AF]
+                        hover:bg-cyan-50
+                        hover:text-cyan-600
+                      "
                     >
                       <MoreVertical size={18} />
                     </button>
@@ -669,49 +901,80 @@ export default function AdminUsersPage() {
                   <div className="mt-4 flex items-center justify-between">
 
                     <span
-                      className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                        user.role === "Admin"
-                          ? "bg-purple-500/10 text-purple-400"
-                          : "bg-cyan-500/10 text-cyan-400"
-                      }`}
+                      className={`
+                        rounded-full
+                        px-3
+                        py-1
+                        text-xs
+                        font-semibold
+                        ${
+                          user.role === "Admin"
+                            ? "bg-purple-50 text-purple-600"
+                            : "bg-cyan-50 text-cyan-700"
+                        }
+                      `}
                     >
                       {user.role}
                     </span>
 
                     <span
-                      className={`flex items-center gap-1.5 text-xs font-medium ${
-                        user.status === "Active"
-                          ? "text-emerald-400"
-                          : "text-red-400"
-                      }`}
-                    >
-                      <span
-                        className={`h-2 w-2 rounded-full ${
+                      className={`
+                        flex
+                        items-center
+                        gap-1.5
+                        text-xs
+                        font-medium
+                        ${
                           user.status === "Active"
-                            ? "bg-emerald-400"
-                            : "bg-red-400"
-                        }`}
+                            ? "text-emerald-600"
+                            : "text-red-500"
+                        }
+                      `}
+                    >
+
+                      <span
+                        className={`
+                          h-2
+                          w-2
+                          rounded-full
+                          ${
+                            user.status === "Active"
+                              ? "bg-emerald-500"
+                              : "bg-red-500"
+                          }
+                        `}
                       />
 
                       {user.status}
+
                     </span>
 
                   </div>
 
-                  <p className="mt-3 text-xs text-slate-600">
+                  <p className="mt-3 text-xs text-[#8AA3AF]">
                     Joined {user.joined}
                   </p>
 
                   {openMenu === user.id && (
 
-                    <div className="mt-4 border-t border-slate-800 pt-3">
+                    <div className="mt-4 border-t border-[#DCECF2] pt-3">
 
                       <button
                         type="button"
                         onClick={() =>
                           toggleStatus(user.id)
                         }
-                        className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-300 hover:bg-slate-900"
+                        className="
+                          w-full
+                          rounded-lg
+                          px-3
+                          py-2
+                          text-left
+                          text-sm
+                          text-[#52788C]
+                          hover:bg-cyan-50
+                          hover:text-cyan-700
+                        "
                       >
                         {user.status === "Active"
                           ? "Deactivate User"
@@ -723,7 +986,17 @@ export default function AdminUsersPage() {
                         onClick={() =>
                           toggleRole(user.id)
                         }
-                        className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-300 hover:bg-slate-900"
+                        className="
+                          w-full
+                          rounded-lg
+                          px-3
+                          py-2
+                          text-left
+                          text-sm
+                          text-[#52788C]
+                          hover:bg-cyan-50
+                          hover:text-cyan-700
+                        "
                       >
                         {user.role === "Admin"
                           ? "Make User"
@@ -748,14 +1021,14 @@ export default function AdminUsersPage() {
 
                 <Users
                   size={40}
-                  className="mx-auto text-slate-700"
+                  className="mx-auto text-[#A7BBC4]"
                 />
 
-                <h3 className="mt-4 text-lg font-semibold text-white">
+                <h3 className="mt-4 text-lg font-semibold text-[#123247]">
                   No users found
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-[#718895]">
                   Try changing your search or filters.
                 </p>
 
@@ -765,18 +1038,24 @@ export default function AdminUsersPage() {
 
             {/* Footer */}
 
-            <div className="border-t border-slate-800 px-6 py-4">
+            <div className="border-t border-[#E1EEF3] px-6 py-4">
 
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-[#718895]">
+
                 Showing{" "}
-                <span className="font-semibold text-slate-300">
+
+                <span className="font-semibold text-[#35596B]">
                   {filteredUsers.length}
                 </span>{" "}
+
                 of{" "}
-                <span className="font-semibold text-slate-300">
+
+                <span className="font-semibold text-[#35596B]">
                   {users.length}
                 </span>{" "}
+
                 users
+
               </p>
 
             </div>

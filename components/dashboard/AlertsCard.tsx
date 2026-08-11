@@ -1,6 +1,12 @@
 "use client";
 
-import { AlertTriangle, CheckCircle, Waves } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle,
+  Waves,
+} from "lucide-react";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 const alerts = [
   {
@@ -22,66 +28,143 @@ const alerts = [
 
 export default function AlertsCard() {
   return (
-    <section className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
+    <Card
+      className="
+        overflow-hidden
+        rounded-2xl
+        border
+        border-[#D8EAF0]
+        bg-white
+        shadow-[0_8px_30px_rgba(30,90,110,0.07)]
+        transition-all
+        duration-300
+        hover:border-cyan-200
+        hover:shadow-[0_12px_35px_rgba(6,182,212,0.10)]
+      "
+    >
+      <CardContent className="p-6">
 
-      {/* Header */}
+        {/* Header */}
 
-      <div className="mb-7 flex items-center gap-3">
+        <div className="mb-7 flex items-center gap-3">
 
-        <AlertTriangle
-          size={24}
-          className="text-yellow-400"
-        />
+          <div
+            className="
+              flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-xl
+              bg-gradient-to-br
+              from-cyan-50
+              to-blue-50
+              ring-1
+              ring-cyan-100
+            "
+          >
+            <AlertTriangle
+              size={22}
+              className="text-cyan-500"
+            />
+          </div>
 
-        <h2 className="text-2xl font-bold text-white">
-          Marine Alerts
-        </h2>
+          <div>
+            <h2 className="text-2xl font-bold text-[#0F2D3D]">
+              Marine Alerts
+            </h2>
 
-      </div>
+            <p className="mt-1 text-sm text-[#718895]">
+              Current ocean conditions and warnings
+            </p>
+          </div>
 
-      {/* Alerts */}
+        </div>
 
-      <div className="space-y-4">
+        {/* Alerts */}
 
-        {alerts.map((alert) => {
-          const Icon = alert.icon;
+        <div className="space-y-4">
 
-          const styles = {
-            warning:
-              "border-yellow-400 bg-yellow-400/10 text-yellow-100",
-            danger:
-              "border-red-500 bg-red-500/10 text-red-100",
-            safe:
-              "border-cyan-400 bg-cyan-400/10 text-cyan-100",
-          };
+          {alerts.map((alert) => {
+            const Icon = alert.icon;
 
-          return (
-            <div
-              key={alert.message}
-              className={`flex items-center gap-3 rounded-2xl border px-4 py-4 ${styles[alert.type as keyof typeof styles]}`}
-            >
+            const styles = {
+              warning: {
+                container: "border-amber-200 bg-amber-50",
+                icon: "bg-amber-100 text-amber-600",
+                text: "text-amber-800",
+              },
 
-              <Icon
-                size={20}
-                className={
-                  alert.type === "warning"
-                    ? "text-yellow-400"
-                    : alert.type === "danger"
-                      ? "text-red-400"
-                      : "text-cyan-400"
-                }
-              />
+              danger: {
+                container: "border-red-200 bg-red-50",
+                icon: "bg-red-100 text-red-600",
+                text: "text-red-800",
+              },
 
-              <p className="text-sm font-medium">
-                {alert.message}
-              </p>
+              safe: {
+                container: "border-emerald-200 bg-emerald-50",
+                icon: "bg-emerald-100 text-emerald-600",
+                text: "text-emerald-800",
+              },
+            };
 
-            </div>
-          );
-        })}
+            const style =
+              styles[alert.type as keyof typeof styles];
 
-      </div>
+            return (
+              <div
+                key={alert.message}
+                className={`
+                  flex
+                  items-center
+                  gap-4
+                  rounded-2xl
+                  border
+                  px-4
+                  py-4
+                  transition-all
+                  duration-200
+                  hover:-translate-y-0.5
+                  ${style.container}
+                `}
+              >
 
-    </section>
+                {/* Icon */}
+
+                <div
+                  className={`
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    ${style.icon}
+                  `}
+                >
+                  <Icon size={20} />
+                </div>
+
+                {/* Message */}
+
+                <p
+                  className={`
+                    text-sm
+                    font-medium
+                    ${style.text}
+                  `}
+                >
+                  {alert.message}
+                </p>
+
+              </div>
+            );
+          })}
+
+        </div>
+
+      </CardContent>
+    </Card>
   );
 }

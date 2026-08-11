@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+
 import {
   AlertTriangle,
   ArrowLeft,
@@ -113,19 +114,13 @@ export default function AdminAnomaliesPage() {
 
   const filteredAnomalies = useMemo(() => {
     return anomalies.filter((anomaly) => {
+      const searchValue = search.toLowerCase();
+
       const matchesSearch =
-        anomaly.title
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        anomaly.location
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        anomaly.sensor
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        anomaly.id
-          .toLowerCase()
-          .includes(search.toLowerCase());
+        anomaly.title.toLowerCase().includes(searchValue) ||
+        anomaly.location.toLowerCase().includes(searchValue) ||
+        anomaly.sensor.toLowerCase().includes(searchValue) ||
+        anomaly.id.toLowerCase().includes(searchValue);
 
       const matchesSeverity =
         severityFilter === "All" ||
@@ -184,7 +179,7 @@ export default function AdminAnomaliesPage() {
   }
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden bg-slate-950 text-white">
+    <main className="min-h-screen w-full overflow-x-hidden bg-[#DCEFF7] text-[#123247]">
 
       {/* Admin Sidebar */}
 
@@ -196,19 +191,31 @@ export default function AdminAnomaliesPage() {
 
         {/* Background Effects */}
 
-        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-red-500/5 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-red-300/10 blur-3xl" />
 
-        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-cyan-300/15 blur-3xl" />
 
         <div className="relative z-10 p-8">
 
-          {/* Header */}
+          {/* ================================================= */}
+          {/* HEADER */}
+          {/* ================================================= */}
 
           <header className="mb-8">
 
             <Link
               href="/admin"
-              className="mb-5 inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-cyan-400"
+              className="
+                mb-5
+                inline-flex
+                items-center
+                gap-2
+                text-sm
+                font-medium
+                text-[#718895]
+                transition
+                hover:text-cyan-600
+              "
             >
               <ArrowLeft size={17} />
               Back to Overview
@@ -218,27 +225,45 @@ export default function AdminAnomaliesPage() {
 
               <div>
 
-                <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-400">
+                <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-600">
+
                   <ShieldAlert size={17} />
+
                   ANOMALY MANAGEMENT
+
                 </div>
 
-                <h1 className="text-4xl font-bold text-white md:text-5xl">
+                <h1 className="text-4xl font-bold text-[#123247] md:text-5xl">
                   Anomalies
                 </h1>
 
-                <p className="mt-3 max-w-2xl text-slate-400">
+                <p className="mt-3 max-w-2xl text-[#52788C]">
                   Monitor detected ocean anomalies, review
                   severity levels, and resolve incidents.
                 </p>
 
               </div>
 
-              <div className="flex items-center gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3">
+              {/* Monitoring Status */}
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-3
+                  rounded-2xl
+                  border
+                  border-emerald-100
+                  bg-white
+                  px-5
+                  py-4
+                  shadow-[0_6px_20px_rgba(30,90,110,0.05)]
+                "
+              >
 
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
 
-                <span className="text-sm font-medium text-emerald-400">
+                <span className="text-sm font-semibold text-emerald-600">
                   Monitoring Active
                 </span>
 
@@ -248,34 +273,47 @@ export default function AdminAnomaliesPage() {
 
           </header>
 
-          {/* Statistics */}
+          {/* ================================================= */}
+          {/* STATISTICS */}
+          {/* ================================================= */}
 
           <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
             {/* High */}
 
-            <div className="rounded-2xl border border-red-500/20 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-red-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50">
+
                   <AlertTriangle
                     size={22}
-                    className="text-red-400"
+                    className="text-red-500"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-red-400">
+                <span className="text-xs font-bold text-red-500">
                   HIGH
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 High Severity
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {highCount}
               </p>
 
@@ -283,28 +321,39 @@ export default function AdminAnomaliesPage() {
 
             {/* Medium */}
 
-            <div className="rounded-2xl border border-orange-500/20 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-orange-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50">
+
                   <AlertTriangle
                     size={22}
-                    className="text-orange-400"
+                    className="text-orange-500"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-orange-400">
+                <span className="text-xs font-bold text-orange-500">
                   MEDIUM
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Medium Severity
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {mediumCount}
               </p>
 
@@ -312,28 +361,39 @@ export default function AdminAnomaliesPage() {
 
             {/* Low */}
 
-            <div className="rounded-2xl border border-yellow-500/20 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-yellow-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-yellow-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-yellow-50">
+
                   <AlertTriangle
                     size={22}
-                    className="text-yellow-400"
+                    className="text-yellow-500"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-yellow-400">
+                <span className="text-xs font-bold text-yellow-600">
                   LOW
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Low Severity
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {lowCount}
               </p>
 
@@ -341,28 +401,39 @@ export default function AdminAnomaliesPage() {
 
             {/* Resolved */}
 
-            <div className="rounded-2xl border border-emerald-500/20 bg-slate-900 p-6">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-emerald-100
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-center justify-between">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50">
+
                   <CheckCircle
                     size={22}
-                    className="text-emerald-400"
+                    className="text-emerald-500"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-emerald-400">
+                <span className="text-xs font-bold text-emerald-600">
                   RESOLVED
                 </span>
 
               </div>
 
-              <p className="mt-5 text-sm text-slate-400">
+              <p className="mt-5 text-sm text-[#718895]">
                 Resolved Anomalies
               </p>
 
-              <p className="mt-1 text-3xl font-bold text-white">
+              <p className="mt-1 text-3xl font-bold text-[#123247]">
                 {resolvedCount}
               </p>
 
@@ -370,23 +441,35 @@ export default function AdminAnomaliesPage() {
 
           </section>
 
-          {/* Anomaly Management */}
+          {/* ================================================= */}
+          {/* ANOMALY MANAGEMENT */}
+          {/* ================================================= */}
 
-          <section className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900">
+          <section
+            className="
+              mt-8
+              overflow-hidden
+              rounded-3xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+            "
+          >
 
             {/* Section Header */}
 
-            <div className="border-b border-slate-800 p-6">
+            <div className="border-b border-[#E1EEF3] p-6">
 
               <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
 
                 <div>
 
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-[#123247]">
                     Detected Anomalies
                   </h2>
 
-                  <p className="mt-1 text-sm text-slate-400">
+                  <p className="mt-1 text-sm text-[#718895]">
                     Review unusual ocean conditions detected
                     by the monitoring system.
                   </p>
@@ -403,7 +486,7 @@ export default function AdminAnomaliesPage() {
 
                     <Search
                       size={18}
-                      className="absolute left-3 top-3 text-slate-500"
+                      className="absolute left-3 top-3 text-[#8AA3AF]"
                     />
 
                     <input
@@ -413,7 +496,25 @@ export default function AdminAnomaliesPage() {
                         setSearch(event.target.value)
                       }
                       placeholder="Search anomalies..."
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 py-2.5 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-500 md:w-64"
+                      className="
+                        w-full
+                        rounded-xl
+                        border
+                        border-[#CFE5EE]
+                        bg-[#F8FCFE]
+                        py-2.5
+                        pl-10
+                        pr-4
+                        text-sm
+                        text-[#123247]
+                        outline-none
+                        transition
+                        placeholder:text-[#9BB2BD]
+                        focus:border-cyan-400
+                        focus:ring-4
+                        focus:ring-cyan-100
+                        md:w-64
+                      "
                     />
 
                   </div>
@@ -429,8 +530,22 @@ export default function AdminAnomaliesPage() {
                           | Severity
                       )
                     }
-                    className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm text-slate-300 outline-none focus:border-cyan-500"
+                    className="
+                      rounded-xl
+                      border
+                      border-[#CFE5EE]
+                      bg-[#F8FCFE]
+                      px-4
+                      py-2.5
+                      text-sm
+                      text-[#52788C]
+                      outline-none
+                      focus:border-cyan-400
+                      focus:ring-4
+                      focus:ring-cyan-100
+                    "
                   >
+
                     <option value="All">
                       All Severity
                     </option>
@@ -446,6 +561,7 @@ export default function AdminAnomaliesPage() {
                     <option value="LOW">
                       Low
                     </option>
+
                   </select>
 
                   {/* Status */}
@@ -459,8 +575,22 @@ export default function AdminAnomaliesPage() {
                           | AnomalyStatus
                       )
                     }
-                    className="rounded-xl border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm text-slate-300 outline-none focus:border-cyan-500"
+                    className="
+                      rounded-xl
+                      border
+                      border-[#CFE5EE]
+                      bg-[#F8FCFE]
+                      px-4
+                      py-2.5
+                      text-sm
+                      text-[#52788C]
+                      outline-none
+                      focus:border-cyan-400
+                      focus:ring-4
+                      focus:ring-cyan-100
+                    "
                   >
+
                     <option value="All">
                       All Status
                     </option>
@@ -472,6 +602,7 @@ export default function AdminAnomaliesPage() {
                     <option value="Resolved">
                       Resolved
                     </option>
+
                   </select>
 
                 </div>
@@ -492,45 +623,44 @@ export default function AdminAnomaliesPage() {
                 const severityStyles =
                   anomaly.severity === "HIGH"
                     ? {
-                        border:
-                          "border-red-500/30",
-                        bg:
-                          "bg-red-500/5",
-                        text:
-                          "text-red-400",
+                        border: "border-red-200",
+                        bg: "bg-red-50",
+                        text: "text-red-600",
                         badge:
-                          "bg-red-500/10 text-red-400",
+                          "bg-red-100 text-red-600",
                       }
                     : anomaly.severity === "MEDIUM"
-                    ? {
-                        border:
-                          "border-orange-500/30",
-                        bg:
-                          "bg-orange-500/5",
-                        text:
-                          "text-orange-400",
-                        badge:
-                          "bg-orange-500/10 text-orange-400",
-                      }
-                    : {
-                        border:
-                          "border-yellow-500/30",
-                        bg:
-                          "bg-yellow-500/5",
-                        text:
-                          "text-yellow-400",
-                        badge:
-                          "bg-yellow-500/10 text-yellow-400",
-                      };
+                      ? {
+                          border:
+                            "border-orange-200",
+                          bg: "bg-orange-50",
+                          text: "text-orange-600",
+                          badge:
+                            "bg-orange-100 text-orange-600",
+                        }
+                      : {
+                          border:
+                            "border-yellow-200",
+                          bg: "bg-yellow-50",
+                          text: "text-yellow-600",
+                          badge:
+                            "bg-yellow-100 text-yellow-600",
+                        };
 
                 return (
                   <div
                     key={anomaly.id}
-                    className={`rounded-2xl border p-5 transition ${
-                      isResolved
-                        ? "border-slate-800 bg-slate-950/40 opacity-70"
-                        : `${severityStyles.border} ${severityStyles.bg}`
-                    }`}
+                    className={`
+                      rounded-2xl
+                      border
+                      p-5
+                      transition
+                      ${
+                        isResolved
+                          ? "border-[#DCECF2] bg-[#F8FCFE] opacity-70"
+                          : `${severityStyles.border} ${severityStyles.bg}`
+                      }
+                    `}
                   >
 
                     <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
@@ -540,17 +670,26 @@ export default function AdminAnomaliesPage() {
                       <div className="flex min-w-0 items-start gap-4">
 
                         <div
-                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                            isResolved
-                              ? "bg-emerald-500/10"
-                              : severityStyles.bg
-                          }`}
+                          className={`
+                            flex
+                            h-12
+                            w-12
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-xl
+                            ${
+                              isResolved
+                                ? "bg-emerald-100"
+                                : "bg-white/70"
+                            }
+                          `}
                         >
 
                           {isResolved ? (
                             <CheckCircle
                               size={23}
-                              className="text-emerald-400"
+                              className="text-emerald-500"
                             />
                           ) : (
                             <AlertTriangle
@@ -567,16 +706,23 @@ export default function AdminAnomaliesPage() {
 
                           <div className="flex flex-wrap items-center gap-3">
 
-                            <h3 className="text-lg font-bold text-white">
+                            <h3 className="text-lg font-bold text-[#123247]">
                               {anomaly.title}
                             </h3>
 
                             <span
-                              className={`rounded-full px-3 py-1 text-xs font-bold ${
-                                isResolved
-                                  ? "bg-emerald-500/10 text-emerald-400"
-                                  : severityStyles.badge
-                              }`}
+                              className={`
+                                rounded-full
+                                px-3
+                                py-1
+                                text-xs
+                                font-bold
+                                ${
+                                  isResolved
+                                    ? "bg-emerald-100 text-emerald-600"
+                                    : severityStyles.badge
+                                }
+                              `}
                             >
                               {isResolved
                                 ? "RESOLVED"
@@ -585,11 +731,11 @@ export default function AdminAnomaliesPage() {
 
                           </div>
 
-                          <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+                          <p className="mt-2 max-w-3xl text-sm leading-6 text-[#52788C]">
                             {anomaly.description}
                           </p>
 
-                          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500">
+                          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#7D96A2]">
 
                             <span className="flex items-center gap-1.5">
                               <MapPin size={14} />
@@ -618,9 +764,27 @@ export default function AdminAnomaliesPage() {
 
                         {isResolved ? (
 
-                          <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-sm font-semibold text-emerald-400">
+                          <div
+                            className="
+                              flex
+                              items-center
+                              gap-2
+                              rounded-xl
+                              border
+                              border-emerald-200
+                              bg-emerald-50
+                              px-4
+                              py-3
+                              text-sm
+                              font-semibold
+                              text-emerald-600
+                            "
+                          >
+
                             <CheckCircle size={17} />
+
                             Resolved
+
                           </div>
 
                         ) : (
@@ -628,12 +792,36 @@ export default function AdminAnomaliesPage() {
                           <button
                             type="button"
                             onClick={() =>
-                              resolveAnomaly(anomaly.id)
+                              resolveAnomaly(
+                                anomaly.id
+                              )
                             }
-                            className="flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-400 transition hover:border-emerald-400 hover:bg-emerald-500/20 xl:w-auto"
+                            className="
+                              flex
+                              w-full
+                              items-center
+                              justify-center
+                              gap-2
+                              rounded-xl
+                              border
+                              border-emerald-200
+                              bg-emerald-50
+                              px-4
+                              py-3
+                              text-sm
+                              font-semibold
+                              text-emerald-600
+                              transition
+                              hover:border-emerald-300
+                              hover:bg-emerald-100
+                              xl:w-auto
+                            "
                           >
+
                             <CheckCircle size={17} />
+
                             Mark as Resolved
+
                           </button>
 
                         )}
@@ -656,14 +844,14 @@ export default function AdminAnomaliesPage() {
 
                 <ShieldAlert
                   size={42}
-                  className="mx-auto text-slate-700"
+                  className="mx-auto text-[#A7BBC4]"
                 />
 
-                <h3 className="mt-4 text-lg font-semibold text-white">
+                <h3 className="mt-4 text-lg font-semibold text-[#123247]">
                   No anomalies found
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-[#718895]">
                   Try changing your search or filters.
                 </p>
 
@@ -673,20 +861,26 @@ export default function AdminAnomaliesPage() {
 
             {/* Footer */}
 
-            <div className="border-t border-slate-800 px-6 py-4">
+            <div className="border-t border-[#E1EEF3] px-6 py-4">
 
-              <div className="flex flex-col gap-2 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col gap-2 text-sm text-[#718895] sm:flex-row sm:items-center sm:justify-between">
 
                 <span>
+
                   Showing{" "}
-                  <span className="font-semibold text-slate-300">
+
+                  <span className="font-semibold text-[#35596B]">
                     {filteredAnomalies.length}
                   </span>{" "}
+
                   of{" "}
-                  <span className="font-semibold text-slate-300">
+
+                  <span className="font-semibold text-[#35596B]">
                     {anomalies.length}
                   </span>{" "}
+
                   anomalies
+
                 </span>
 
                 <span className="flex items-center gap-2">
@@ -695,10 +889,10 @@ export default function AdminAnomaliesPage() {
                     <>
                       <XCircle
                         size={15}
-                        className="text-red-400"
+                        className="text-red-500"
                       />
 
-                      <span className="text-red-400">
+                      <span className="text-red-500">
                         {highCount} high priority{" "}
                         {highCount === 1
                           ? "alert"
@@ -709,10 +903,10 @@ export default function AdminAnomaliesPage() {
                     <>
                       <CheckCircle
                         size={15}
-                        className="text-emerald-400"
+                        className="text-emerald-500"
                       />
 
-                      <span className="text-emerald-400">
+                      <span className="text-emerald-600">
                         No high priority alerts
                       </span>
                     </>
@@ -726,22 +920,36 @@ export default function AdminAnomaliesPage() {
 
           </section>
 
-          {/* Monitoring Note */}
+          {/* ================================================= */}
+          {/* MONITORING NOTE */}
+          {/* ================================================= */}
 
-          <div className="mt-6 flex items-start gap-3 rounded-2xl border border-orange-500/20 bg-orange-500/5 p-5">
+          <div
+            className="
+              mt-6
+              flex
+              items-start
+              gap-3
+              rounded-2xl
+              border
+              border-orange-100
+              bg-orange-50
+              p-5
+            "
+          >
 
             <AlertTriangle
               size={20}
-              className="mt-0.5 shrink-0 text-orange-400"
+              className="mt-0.5 shrink-0 text-orange-500"
             />
 
             <div>
 
-              <p className="font-semibold text-orange-300">
+              <p className="font-semibold text-orange-600">
                 Anomaly monitoring
               </p>
 
-              <p className="mt-1 text-sm leading-6 text-slate-400">
+              <p className="mt-1 text-sm leading-6 text-[#718895]">
                 These anomalies are currently demonstration
                 data. The backend anomaly detection service
                 can provide live alerts and detection events

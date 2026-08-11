@@ -10,18 +10,20 @@ import {
 
 export default function QuickActions() {
   return (
-    <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900/70 p-8">
+    <section className="mt-8">
 
       {/* Header */}
 
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-white">
+      <div className="mb-6">
+
+        <h2 className="text-2xl font-bold text-[#0F2D3D]">
           Quick Actions
         </h2>
 
-        <p className="mt-2 text-sm text-slate-400">
+        <p className="mt-2 text-sm text-[#718895]">
           Instantly access OceanMind AI tools.
         </p>
+
       </div>
 
       {/* Actions */}
@@ -32,31 +34,105 @@ export default function QuickActions() {
 
         <Link
           href="/report"
-          className="group relative rounded-2xl border border-slate-800 bg-slate-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10"
+          className="
+            group
+            relative
+            overflow-hidden
+            rounded-2xl
+            border
+            border-[#D8EAF0]
+            bg-white
+            p-6
+            shadow-[0_8px_30px_rgba(30,90,110,0.07)]
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:border-cyan-300
+            hover:shadow-[0_12px_35px_rgba(6,182,212,0.14)]
+          "
         >
-          <div className="flex items-start justify-between">
 
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500">
-              <FileText
-                size={27}
-                className="text-white"
+          {/* Background glow */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -right-10
+              -top-10
+              h-28
+              w-28
+              rounded-full
+              bg-cyan-200/30
+              blur-2xl
+              transition
+              group-hover:bg-cyan-300/40
+            "
+          />
+
+          <div className="relative">
+
+            <div className="flex items-start justify-between">
+
+              <div
+                className="
+                  flex
+                  h-14
+                  w-14
+                  items-center
+                  justify-center
+                  rounded-2xl
+                  bg-gradient-to-br
+                  from-cyan-400
+                  to-blue-500
+                  shadow-lg
+                  shadow-cyan-500/20
+                "
+              >
+                <FileText
+                  size={27}
+                  className="text-white"
+                />
+              </div>
+
+              <ArrowUpRight
+                size={20}
+                className="
+                  text-[#8AA4B0]
+                  transition-all
+                  duration-300
+                  group-hover:-translate-y-1
+                  group-hover:translate-x-1
+                  group-hover:text-cyan-500
+                "
               />
+
             </div>
 
-            <ArrowUpRight
-              size={20}
-              className="text-slate-600 transition group-hover:text-cyan-400"
+            <h3 className="mt-7 text-xl font-bold text-[#0F2D3D]">
+              Generate Report
+            </h3>
+
+            <p className="mt-3 text-sm leading-6 text-[#718895]">
+              Create AI-powered ocean research reports.
+            </p>
+
+            <div
+              className="
+                mt-6
+                h-1
+                w-14
+                rounded-full
+                bg-gradient-to-r
+                from-cyan-400
+                to-blue-500
+                transition-all
+                duration-300
+                group-hover:w-24
+              "
             />
 
           </div>
-
-          <h3 className="mt-7 text-xl font-bold text-white">
-            Generate Report
-          </h3>
-
-          <p className="mt-3 text-sm leading-6 text-slate-400">
-            Create AI-powered ocean research reports.
-          </p>
 
         </Link>
 
@@ -64,31 +140,103 @@ export default function QuickActions() {
 
         <Link
           href="/chat"
-          className="group relative rounded-2xl border border-slate-800 bg-slate-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10"
+          className="
+            group
+            relative
+            overflow-hidden
+            rounded-2xl
+            border
+            border-[#D8EAF0]
+            bg-white
+            p-6
+            shadow-[0_8px_30px_rgba(30,90,110,0.07)]
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:border-cyan-300
+            hover:shadow-[0_12px_35px_rgba(6,182,212,0.14)]
+          "
         >
-          <div className="flex items-start justify-between">
 
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-fuchsia-500">
-              <Bot
-                size={27}
-                className="text-white"
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -right-10
+              -top-10
+              h-28
+              w-28
+              rounded-full
+              bg-blue-200/25
+              blur-2xl
+              transition
+              group-hover:bg-blue-300/35
+            "
+          />
+
+          <div className="relative">
+
+            <div className="flex items-start justify-between">
+
+              <div
+                className="
+                  flex
+                  h-14
+                  w-14
+                  items-center
+                  justify-center
+                  rounded-2xl
+                  bg-gradient-to-br
+                  from-cyan-400
+                  to-blue-500
+                  shadow-lg
+                  shadow-cyan-500/20
+                "
+              >
+                <Bot
+                  size={27}
+                  className="text-white"
+                />
+              </div>
+
+              <ArrowUpRight
+                size={20}
+                className="
+                  text-[#8AA4B0]
+                  transition-all
+                  duration-300
+                  group-hover:-translate-y-1
+                  group-hover:translate-x-1
+                  group-hover:text-cyan-500
+                "
               />
+
             </div>
 
-            <ArrowUpRight
-              size={20}
-              className="text-slate-600 transition group-hover:text-purple-400"
+            <h3 className="mt-7 text-xl font-bold text-[#0F2D3D]">
+              AI Assistant
+            </h3>
+
+            <p className="mt-3 text-sm leading-6 text-[#718895]">
+              Ask OceanMind anything about marine data.
+            </p>
+
+            <div
+              className="
+                mt-6
+                h-1
+                w-14
+                rounded-full
+                bg-gradient-to-r
+                from-cyan-400
+                to-blue-500
+                transition-all
+                duration-300
+                group-hover:w-24
+              "
             />
 
           </div>
-
-          <h3 className="mt-7 text-xl font-bold text-white">
-            AI Assistant
-          </h3>
-
-          <p className="mt-3 text-sm leading-6 text-slate-400">
-            Ask OceanMind anything about marine data.
-          </p>
 
         </Link>
 
@@ -96,31 +244,103 @@ export default function QuickActions() {
 
         <Link
           href="/map"
-          className="group relative rounded-2xl border border-slate-800 bg-slate-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10"
+          className="
+            group
+            relative
+            overflow-hidden
+            rounded-2xl
+            border
+            border-[#D8EAF0]
+            bg-white
+            p-6
+            shadow-[0_8px_30px_rgba(30,90,110,0.07)]
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:border-cyan-300
+            hover:shadow-[0_12px_35px_rgba(6,182,212,0.14)]
+          "
         >
-          <div className="flex items-start justify-between">
 
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500">
-              <Map
-                size={27}
-                className="text-white"
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -right-10
+              -top-10
+              h-28
+              w-28
+              rounded-full
+              bg-cyan-200/30
+              blur-2xl
+              transition
+              group-hover:bg-cyan-300/40
+            "
+          />
+
+          <div className="relative">
+
+            <div className="flex items-start justify-between">
+
+              <div
+                className="
+                  flex
+                  h-14
+                  w-14
+                  items-center
+                  justify-center
+                  rounded-2xl
+                  bg-gradient-to-br
+                  from-cyan-400
+                  to-blue-500
+                  shadow-lg
+                  shadow-cyan-500/20
+                "
+              >
+                <Map
+                  size={27}
+                  className="text-white"
+                />
+              </div>
+
+              <ArrowUpRight
+                size={20}
+                className="
+                  text-[#8AA4B0]
+                  transition-all
+                  duration-300
+                  group-hover:-translate-y-1
+                  group-hover:translate-x-1
+                  group-hover:text-cyan-500
+                "
               />
+
             </div>
 
-            <ArrowUpRight
-              size={20}
-              className="text-slate-600 transition group-hover:text-emerald-400"
+            <h3 className="mt-7 text-xl font-bold text-[#0F2D3D]">
+              Ocean Map
+            </h3>
+
+            <p className="mt-3 text-sm leading-6 text-[#718895]">
+              Explore global ARGO float locations.
+            </p>
+
+            <div
+              className="
+                mt-6
+                h-1
+                w-14
+                rounded-full
+                bg-gradient-to-r
+                from-cyan-400
+                to-blue-500
+                transition-all
+                duration-300
+                group-hover:w-24
+              "
             />
 
           </div>
-
-          <h3 className="mt-7 text-xl font-bold text-white">
-            Ocean Map
-          </h3>
-
-          <p className="mt-3 text-sm leading-6 text-slate-400">
-            Explore global ARGO float locations.
-          </p>
 
         </Link>
 

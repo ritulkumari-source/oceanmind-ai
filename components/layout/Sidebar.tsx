@@ -1,22 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  MessageSquare,
-  Globe,
+  MessageCircle,
+  Globe2,
   BarChart3,
   FileText,
   Settings,
-  Database,
-  Cpu,
+  Waves,
   LogOut,
-  UserCircle,
 } from "lucide-react";
 
-const links = [
+const navigation = [
   {
     name: "Dashboard",
     href: "/dashboard",
@@ -25,12 +22,12 @@ const links = [
   {
     name: "AI Chat",
     href: "/chat",
-    icon: MessageSquare,
+    icon: MessageCircle,
   },
   {
     name: "Ocean Map",
     href: "/map",
-    icon: Globe,
+    icon: Globe2,
   },
   {
     name: "Analytics",
@@ -51,163 +48,256 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const router = useRouter();
-
-  function handleLogout() {
-    router.push("/login");
-  }
 
   return (
-    <aside className="flex min-h-screen w-72 flex-col border-r border-slate-800 bg-slate-950">
+    <aside
+      className="
+        sticky
+        top-0
+        flex
+        h-screen
+        w-72
+        shrink-0
+        flex-col
+        border-r
+        border-[#D8EAF0]
+        bg-white
+        text-[#0F2D3D]
+        shadow-[4px_0_20px_rgba(30,90,110,0.05)]
+      "
+    >
 
-      {/* Logo */}
+      {/* =====================================================
+          LOGO
+      ===================================================== */}
 
-      <div className="border-b border-slate-800 p-8">
+      <div className="border-b border-[#D8EAF0] px-7 py-7">
 
-        <h1 className="text-3xl font-bold text-cyan-400">
-          🌊 OceanMind
-        </h1>
+        <Link href="/dashboard" className="group block">
 
-        <p className="mt-2 text-sm text-slate-400">
-          Ocean Intelligence Platform
-        </p>
+          <div className="flex items-center gap-3">
+
+            {/* Logo */}
+
+            <div
+              className="
+                flex
+                h-12
+                w-12
+                items-center
+                justify-center
+                rounded-2xl
+                bg-gradient-to-br
+                from-cyan-400
+                to-blue-500
+                shadow-lg
+                shadow-cyan-500/20
+              "
+            >
+              <Waves
+                size={27}
+                strokeWidth={2}
+                className="text-white"
+              />
+            </div>
+
+            {/* Brand */}
+
+            <div>
+
+              <h1 className="text-2xl font-bold tracking-tight text-[#0F2D3D]">
+                Ocean
+                <span className="text-cyan-500">
+                  Mind
+                </span>
+              </h1>
+
+              <p className="mt-1 text-xs text-[#718895]">
+                Ocean Intelligence Platform
+              </p>
+
+            </div>
+
+          </div>
+
+        </Link>
 
       </div>
 
-      {/* Navigation */}
+      {/* =====================================================
+          NAVIGATION
+      ===================================================== */}
 
-      <nav className="flex-1 space-y-3 p-5">
+      <nav className="flex-1 px-4 py-7">
 
-        {links.map((item) => {
-          const Icon = item.icon;
-          const active = pathname === item.href;
+        <p className="mb-4 px-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8AA4B0]">
+          Workspace
+        </p>
 
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`flex items-center gap-4 rounded-2xl p-4 transition-all duration-300 ${
-                active
-                  ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/20"
-                  : "text-slate-300 hover:bg-slate-800"
-              }`}
-            >
-              <Icon size={22} />
+        <div className="space-y-2">
 
-              <span className="font-medium">
-                {item.name}
-              </span>
-            </Link>
-          );
-        })}
+          {navigation.map((item) => {
+
+            const Icon = item.icon;
+
+            const isActive =
+              item.href === "/dashboard"
+                ? pathname === "/dashboard"
+                : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`
+                  group
+                  flex
+                  items-center
+                  gap-4
+                  rounded-xl
+                  px-4
+                  py-3.5
+                  text-sm
+                  font-medium
+                  transition-all
+                  duration-200
+
+                  ${
+                    isActive
+                      ? `
+                        bg-gradient-to-r
+                        from-cyan-500
+                        to-blue-500
+                        text-white
+                        shadow-lg
+                        shadow-cyan-500/20
+                      `
+                      : `
+                        text-[#466170]
+                        hover:bg-[#EAF6FA]
+                        hover:text-cyan-600
+                      `
+                  }
+                `}
+              >
+
+                <Icon
+                  size={20}
+                  strokeWidth={1.8}
+                  className={
+                    isActive
+                      ? "text-white"
+                      : "text-[#7895A2] transition-colors group-hover:text-cyan-500"
+                  }
+                />
+
+                <span>
+                  {item.name}
+                </span>
+
+                {isActive && (
+                  <span className="ml-auto h-2 w-2 rounded-full bg-white" />
+                )}
+
+              </Link>
+            );
+          })}
+
+        </div>
 
       </nav>
 
-      {/* Stats */}
+      {/* =====================================================
+          SYSTEM STATUS + LOGOUT
+      ===================================================== */}
 
-      <div className="space-y-4 border-t border-slate-800 p-5">
+      <div className="border-t border-[#D8EAF0] p-4">
 
-        <div className="rounded-xl bg-slate-900 p-4">
+        {/* System Status */}
 
-          <div className="flex items-center justify-between">
-
-            <div className="flex items-center gap-2">
-
-              <Database
-                className="text-cyan-400"
-                size={18}
-              />
-
-              <span className="text-slate-300">
-                Ocean Records
-              </span>
-
-            </div>
-
-            <span className="font-bold text-cyan-400">
-              1.8M
-            </span>
-
-          </div>
-
-        </div>
-
-        <div className="rounded-xl bg-slate-900 p-4">
-
-          <div className="flex items-center justify-between">
-
-            <div className="flex items-center gap-2">
-
-              <Cpu
-                className="text-cyan-400"
-                size={18}
-              />
-
-              <span className="text-slate-300">
-                AI Accuracy
-              </span>
-
-            </div>
-
-            <span className="font-bold text-green-400">
-              98%
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* User */}
-
-      <div className="border-t border-slate-800 p-5">
-
-        <div className="mb-5 flex items-center gap-4">
-
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-cyan-500">
-
-            <UserCircle
-              size={36}
-              className="text-white"
-            />
-
-          </div>
-
-          <div>
-
-            <h3 className="font-semibold text-white">
-              Ritul Kumari
-            </h3>
-
-            <p className="text-sm text-slate-400">
-              Ocean Researcher
-            </p>
-
-            <div className="mt-1 flex items-center gap-2">
-
-              <div className="h-2 w-2 rounded-full bg-green-500" />
-
-              <span className="text-xs text-green-400">
-                Online
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <button
-          onClick={handleLogout}
-          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-red-500 py-3 font-semibold text-white transition hover:bg-red-400"
+        <div
+          className="
+            mb-4
+            rounded-xl
+            border
+            border-cyan-100
+            bg-[#EAF6FA]
+            p-4
+          "
         >
 
-          <LogOut size={20} />
+          <div className="flex items-center gap-3">
+
+            <div
+              className="
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+                rounded-lg
+                bg-gradient-to-br
+                from-cyan-400
+                to-blue-500
+              "
+            >
+              <Waves
+                size={18}
+                className="text-white"
+              />
+            </div>
+
+            <div>
+
+              <p className="text-xs font-semibold text-[#0F2D3D]">
+                Ocean Systems
+              </p>
+
+              <div className="mt-1 flex items-center gap-2">
+
+                <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+
+                <span className="text-[11px] text-emerald-600">
+                  All systems operational
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Logout */}
+
+        <Link
+          href="/login"
+          className="
+            flex
+            w-full
+            items-center
+            justify-center
+            gap-2
+            rounded-xl
+            border
+            border-[#D8EAF0]
+            bg-white
+            px-4
+            py-3
+            text-sm
+            font-medium
+            text-[#466170]
+            transition-all
+            hover:border-red-200
+            hover:bg-red-50
+            hover:text-red-500
+          "
+        >
+          <LogOut size={18} />
 
           Logout
-
-        </button>
+        </Link>
 
       </div>
 

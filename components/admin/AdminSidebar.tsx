@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import {
   LayoutDashboard,
   Users,
@@ -56,47 +57,107 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[252px] flex-col border-r border-slate-800 bg-slate-950">
+    <aside
+      className="
+        fixed
+        left-0
+        top-0
+        z-40
+        flex
+        h-screen
+        w-[252px]
+        flex-col
+        border-r
+        border-[#CFE5EE]
+        bg-white
+        shadow-[4px_0_25px_rgba(30,90,110,0.06)]
+      "
+    >
 
-      {/* Logo */}
+      {/* ================================================= */}
+      {/* LOGO */}
+      {/* ================================================= */}
 
-      <div className="border-b border-slate-800 px-6 py-6">
-        <Link href="/admin" className="block">
+      <div className="border-b border-[#E1EEF3] px-6 py-6">
+
+        <Link
+          href="/admin"
+          className="block"
+        >
+
           <div className="flex items-center gap-3">
 
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/10">
+            <div
+              className="
+                flex
+                h-11
+                w-11
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                bg-gradient-to-br
+                from-cyan-500
+                to-blue-500
+                shadow-md
+                shadow-cyan-500/20
+              "
+            >
+
               <Waves
                 size={25}
-                className="text-cyan-400"
+                className="text-white"
               />
+
             </div>
 
             <div>
-              <h1 className="text-xl font-bold text-white">
+
+              <h1 className="text-xl font-bold text-[#123247]">
+
                 OceanMind
-                <span className="text-cyan-400"> AI</span>
+                <span className="text-cyan-500">
+                  {" "}AI
+                </span>
+
               </h1>
 
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-[#8AA3AF]">
                 Admin Console
               </p>
+
             </div>
 
           </div>
+
         </Link>
+
       </div>
 
-      {/* Navigation */}
+      {/* ================================================= */}
+      {/* NAVIGATION */}
+      {/* ================================================= */}
 
       <nav className="flex-1 overflow-y-auto px-4 py-6">
 
-        <p className="mb-4 px-3 text-xs font-semibold uppercase tracking-wider text-slate-600">
+        <p
+          className="
+            mb-4
+            px-3
+            text-xs
+            font-semibold
+            uppercase
+            tracking-wider
+            text-[#9AAFB9]
+          "
+        >
           Administration
         </p>
 
         <div className="space-y-2">
 
           {navigation.map((item) => {
+
             const Icon = item.icon;
 
             const isActive =
@@ -108,73 +169,179 @@ export default function AdminSidebar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`group flex items-center gap-3 rounded-xl px-4 py-3.5 text-sm font-medium transition-all ${
-                  isActive
-                    ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/20"
-                    : "text-slate-400 hover:bg-slate-900 hover:text-white"
-                }`}
+                className={`
+                  group
+                  relative
+                  flex
+                  items-center
+                  gap-3
+                  rounded-xl
+                  px-4
+                  py-3.5
+                  text-sm
+                  font-medium
+                  transition-all
+                  duration-200
+
+                  ${
+                    isActive
+                      ? `
+                        bg-gradient-to-r
+                        from-cyan-50
+                        to-blue-50
+                        text-cyan-700
+                        shadow-sm
+                      `
+                      : `
+                        text-[#718895]
+                        hover:bg-[#F3FAFC]
+                        hover:text-cyan-600
+                      `
+                  }
+                `}
               >
+
+                {/* Active Indicator */}
+
+                {isActive && (
+                  <span
+                    className="
+                      absolute
+                      -left-4
+                      top-1/2
+                      h-8
+                      w-1
+                      -translate-y-1/2
+                      rounded-r-full
+                      bg-gradient-to-b
+                      from-cyan-400
+                      to-blue-500
+                    "
+                  />
+                )}
+
+                {/* Icon */}
 
                 <Icon
                   size={19}
                   className={
                     isActive
-                      ? "text-white"
-                      : "text-slate-500 transition group-hover:text-cyan-400"
+                      ? "text-cyan-600"
+                      : "text-[#8AA3AF] transition group-hover:text-cyan-500"
                   }
                 />
 
-                <span>{item.name}</span>
+                {/* Name */}
+
+                <span>
+                  {item.name}
+                </span>
 
               </Link>
             );
+
           })}
 
         </div>
 
       </nav>
 
-      {/* Admin Profile */}
+      {/* ================================================= */}
+      {/* ADMIN PROFILE */}
+      {/* ================================================= */}
 
-      <div className="border-t border-slate-800 p-4">
+      <div className="border-t border-[#E1EEF3] p-4">
 
-        <div className="mb-4 rounded-xl border border-purple-500/20 bg-purple-500/5 p-4">
+        <div
+          className="
+            mb-4
+            rounded-xl
+            border
+            border-cyan-100
+            bg-gradient-to-br
+            from-cyan-50
+            to-blue-50
+            p-4
+          "
+        >
 
           <div className="flex items-center gap-3">
 
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-500/10">
+            {/* Avatar */}
+
+            <div
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-white
+                shadow-sm
+              "
+            >
+
               <ShieldCheck
                 size={20}
-                className="text-purple-400"
+                className="text-cyan-600"
               />
+
             </div>
 
+            {/* Details */}
+
             <div>
-              <p className="text-sm font-semibold text-white">
+
+              <p className="text-sm font-semibold text-[#123247]">
                 Administrator
               </p>
 
               <div className="mt-1 flex items-center gap-2">
 
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
 
-                <span className="text-xs text-emerald-400">
+                <span className="text-xs font-medium text-emerald-600">
                   Online
                 </span>
 
               </div>
+
             </div>
 
           </div>
 
         </div>
 
+        {/* Logout */}
+
         <Link
           href="/login"
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-red-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-400"
+          className="
+            flex
+            w-full
+            items-center
+            justify-center
+            gap-2
+            rounded-xl
+            bg-red-500
+            px-4
+            py-3
+            text-sm
+            font-semibold
+            text-white
+            shadow-sm
+            transition
+            hover:bg-red-400
+            hover:shadow-md
+          "
         >
+
           <LogOut size={18} />
+
           Logout
+
         </Link>
 
       </div>

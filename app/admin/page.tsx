@@ -84,7 +84,7 @@ const systemServices = [
 
 export default function AdminDashboard() {
   return (
-    <main className="min-h-screen w-full overflow-x-hidden bg-slate-950 text-white">
+    <main className="min-h-screen w-full overflow-x-hidden bg-[#DCEFF7] text-[#123247]">
 
       {/* Sidebar */}
 
@@ -96,62 +96,78 @@ export default function AdminDashboard() {
 
         {/* Background Effects */}
 
-        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl" />
 
-        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-blue-300/20 blur-3xl" />
 
         <div className="relative z-10 p-8">
 
-          {/* Header */}
+          {/* ================================================= */}
+          {/* HEADER */}
+          {/* ================================================= */}
 
           <header className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
 
             <div>
 
-              <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-400">
+              <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-cyan-600">
+
                 <Activity size={17} />
+
                 ADMIN CONSOLE
+
               </div>
 
-              <h1 className="text-4xl font-bold text-white md:text-5xl">
+              <h1 className="text-4xl font-bold text-[#123247] md:text-5xl">
                 Platform Overview
               </h1>
 
-              <p className="mt-3 max-w-2xl text-slate-400">
+              <p className="mt-3 max-w-2xl text-[#52788C]">
                 Monitor OceanMind users, sensors, anomalies,
                 ARGO data, and overall system health.
               </p>
 
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* System Status */}
 
-              <Link
-                href="/admin/monitoring"
-                className="rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 transition hover:border-cyan-500/40"
-              >
+            <Link
+              href="/admin/monitoring"
+              className="
+                rounded-2xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                px-5
+                py-4
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+                transition
+                hover:border-cyan-300
+                hover:shadow-md
+              "
+            >
 
-                <p className="text-xs text-slate-500">
-                  System Status
-                </p>
+              <p className="text-xs font-medium text-[#718895]">
+                System Status
+              </p>
 
-                <div className="mt-1 flex items-center gap-2">
+              <div className="mt-1 flex items-center gap-2">
 
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
 
-                  <span className="text-sm font-semibold text-emerald-400">
-                    All Systems Operational
-                  </span>
+                <span className="text-sm font-semibold text-emerald-600">
+                  All Systems Operational
+                </span>
 
-                </div>
+              </div>
 
-              </Link>
-
-            </div>
+            </Link>
 
           </header>
 
+          {/* ================================================= */}
           {/* KPI CARDS */}
+          {/* ================================================= */}
 
           <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
@@ -159,41 +175,56 @@ export default function AdminDashboard() {
 
             <Link
               href="/admin/users"
-              className="group rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-cyan-500/40 hover:bg-slate-900/80"
+              className="
+                group
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-cyan-300
+                hover:shadow-lg
+              "
             >
 
               <div className="flex items-start justify-between">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50">
+
                   <Users
                     size={24}
-                    className="text-cyan-400"
+                    className="text-cyan-600"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-emerald-400">
+                <span className="text-xs font-semibold text-emerald-600">
                   +8.4%
                 </span>
 
               </div>
 
-              <p className="mt-6 text-sm text-slate-400">
+              <p className="mt-6 text-sm text-[#718895]">
                 Total Users
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-white">
+              <h2 className="mt-2 text-3xl font-bold text-[#123247]">
                 12,482
               </h2>
 
               <div className="mt-2 flex items-center justify-between">
 
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#8AA3AF]">
                   3,821 currently active
                 </p>
 
                 <ArrowUpRight
                   size={17}
-                  className="text-slate-600 transition group-hover:text-cyan-400"
+                  className="text-[#9BB2BD] transition group-hover:text-cyan-600"
                 />
 
               </div>
@@ -204,41 +235,56 @@ export default function AdminDashboard() {
 
             <Link
               href="/admin/sensors"
-              className="group rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-blue-500/40 hover:bg-slate-900/80"
+              className="
+                group
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-blue-300
+                hover:shadow-lg
+              "
             >
 
               <div className="flex items-start justify-between">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50">
+
                   <Radio
                     size={24}
-                    className="text-blue-400"
+                    className="text-blue-600"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-emerald-400">
+                <span className="text-xs font-semibold text-emerald-600">
                   124 Online
                 </span>
 
               </div>
 
-              <p className="mt-6 text-sm text-slate-400">
+              <p className="mt-6 text-sm text-[#718895]">
                 Sensor Nodes
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-white">
+              <h2 className="mt-2 text-3xl font-bold text-[#123247]">
                 128
               </h2>
 
               <div className="mt-2 flex items-center justify-between">
 
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#8AA3AF]">
                   4 currently offline
                 </p>
 
                 <ArrowUpRight
                   size={17}
-                  className="text-slate-600 transition group-hover:text-blue-400"
+                  className="text-[#9BB2BD] transition group-hover:text-blue-600"
                 />
 
               </div>
@@ -249,41 +295,56 @@ export default function AdminDashboard() {
 
             <Link
               href="/admin/anomalies"
-              className="group rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-orange-500/40 hover:bg-slate-900/80"
+              className="
+                group
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-orange-300
+                hover:shadow-lg
+              "
             >
 
               <div className="flex items-start justify-between">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/10">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50">
+
                   <AlertTriangle
                     size={24}
-                    className="text-orange-400"
+                    className="text-orange-500"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-red-400">
+                <span className="text-xs font-semibold text-red-500">
                   6 HIGH
                 </span>
 
               </div>
 
-              <p className="mt-6 text-sm text-slate-400">
+              <p className="mt-6 text-sm text-[#718895]">
                 Active Anomalies
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-white">
+              <h2 className="mt-2 text-3xl font-bold text-[#123247]">
                 24
               </h2>
 
               <div className="mt-2 flex items-center justify-between">
 
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#8AA3AF]">
                   6 high · 10 medium · 8 low
                 </p>
 
                 <ArrowUpRight
                   size={17}
-                  className="text-slate-600 transition group-hover:text-orange-400"
+                  className="text-[#9BB2BD] transition group-hover:text-orange-500"
                 />
 
               </div>
@@ -294,41 +355,56 @@ export default function AdminDashboard() {
 
             <Link
               href="/admin/argo"
-              className="group rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-cyan-500/40 hover:bg-slate-900/80"
+              className="
+                group
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-6
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-cyan-300
+                hover:shadow-lg
+              "
             >
 
               <div className="flex items-start justify-between">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50">
+
                   <Waves
                     size={24}
-                    className="text-cyan-400"
+                    className="text-cyan-600"
                   />
+
                 </div>
 
-                <span className="text-xs font-semibold text-emerald-400">
+                <span className="text-xs font-semibold text-emerald-600">
                   Synced
                 </span>
 
               </div>
 
-              <p className="mt-6 text-sm text-slate-400">
+              <p className="mt-6 text-sm text-[#718895]">
                 ARGO Profiles
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-white">
+              <h2 className="mt-2 text-3xl font-bold text-[#123247]">
                 4,500+
               </h2>
 
               <div className="mt-2 flex items-center justify-between">
 
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#8AA3AF]">
                   Last sync: Today
                 </p>
 
                 <ArrowUpRight
                   size={17}
-                  className="text-slate-600 transition group-hover:text-cyan-400"
+                  className="text-[#9BB2BD] transition group-hover:text-cyan-600"
                 />
 
               </div>
@@ -337,11 +413,26 @@ export default function AdminDashboard() {
 
           </section>
 
+          {/* ================================================= */}
           {/* SYSTEM MONITORING */}
+          {/* ================================================= */}
 
           <Link
             href="/admin/monitoring"
-            className="group mt-8 block rounded-3xl border border-slate-800 bg-slate-900 p-7 transition hover:border-emerald-500/30"
+            className="
+              group
+              mt-8
+              block
+              rounded-3xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              p-7
+              shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              transition
+              hover:border-emerald-300
+              hover:shadow-lg
+            "
           >
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -352,22 +443,22 @@ export default function AdminDashboard() {
 
                   <Server
                     size={23}
-                    className="text-emerald-400"
+                    className="text-emerald-600"
                   />
 
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-[#123247]">
                     System Monitoring
                   </h2>
 
                 </div>
 
-                <p className="mt-2 text-sm text-slate-400">
+                <p className="mt-2 text-sm text-[#718895]">
                   Current health of OceanMind infrastructure.
                 </p>
 
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-emerald-400">
+              <div className="flex items-center gap-2 text-sm text-emerald-600">
 
                 <CheckCircle size={17} />
 
@@ -388,12 +479,20 @@ export default function AdminDashboard() {
 
                 <div
                   key={service.name}
-                  className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5"
+                  className="
+                    rounded-2xl
+                    border
+                    border-[#DCECF2]
+                    bg-[#F7FCFE]
+                    p-5
+                    transition
+                    hover:border-emerald-200
+                  "
                 >
 
                   <div className="flex items-center justify-between">
 
-                    <p className="font-medium text-slate-200">
+                    <p className="font-medium text-[#35596B]">
                       {service.name}
                     </p>
 
@@ -401,11 +500,11 @@ export default function AdminDashboard() {
 
                   </div>
 
-                  <p className="mt-4 text-lg font-bold text-white">
+                  <p className="mt-4 text-lg font-bold text-[#123247]">
                     {service.value}
                   </p>
 
-                  <p className="mt-1 text-xs text-emerald-400">
+                  <p className="mt-1 text-xs font-medium text-emerald-600">
                     {service.status}
                   </p>
 
@@ -417,13 +516,24 @@ export default function AdminDashboard() {
 
           </Link>
 
+          {/* ================================================= */}
           {/* ANOMALIES + SENSORS */}
+          {/* ================================================= */}
 
           <section className="mt-8 grid grid-cols-1 gap-8 xl:grid-cols-2">
 
             {/* Anomalies */}
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900 p-7">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-7
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-start justify-between">
 
@@ -431,18 +541,22 @@ export default function AdminDashboard() {
 
                   <div className="flex items-center gap-3">
 
-                    <AlertTriangle
-                      size={23}
-                      className="text-orange-400"
-                    />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50">
 
-                    <h2 className="text-2xl font-bold text-white">
+                      <AlertTriangle
+                        size={22}
+                        className="text-orange-500"
+                      />
+
+                    </div>
+
+                    <h2 className="text-2xl font-bold text-[#123247]">
                       Recent Anomalies
                     </h2>
 
                   </div>
 
-                  <p className="mt-2 text-sm text-slate-400">
+                  <p className="mt-2 text-sm text-[#718895]">
                     Detected ocean and sensor anomalies.
                   </p>
 
@@ -450,7 +564,7 @@ export default function AdminDashboard() {
 
                 <Link
                   href="/admin/anomalies"
-                  className="flex items-center gap-1 text-sm font-medium text-cyan-400 transition hover:text-cyan-300"
+                  className="flex items-center gap-1 text-sm font-medium text-cyan-600 transition hover:text-cyan-500"
                 >
                   View All
                   <ArrowUpRight size={16} />
@@ -464,23 +578,23 @@ export default function AdminDashboard() {
 
                   const severityStyle =
                     anomaly.severity === "HIGH"
-                      ? "border-red-500/40 bg-red-500/5"
+                      ? "border-red-200 bg-red-50"
                       : anomaly.severity === "MEDIUM"
-                        ? "border-yellow-500/40 bg-yellow-500/5"
-                        : "border-blue-500/40 bg-blue-500/5";
+                        ? "border-yellow-200 bg-yellow-50"
+                        : "border-blue-200 bg-blue-50";
 
                   const severityText =
                     anomaly.severity === "HIGH"
-                      ? "text-red-400"
+                      ? "text-red-600"
                       : anomaly.severity === "MEDIUM"
-                        ? "text-yellow-400"
-                        : "text-blue-400";
+                        ? "text-yellow-600"
+                        : "text-blue-600";
 
                   return (
                     <Link
                       href="/admin/anomalies"
                       key={anomaly.title}
-                      className={`block rounded-2xl border p-4 transition hover:bg-slate-950/50 ${severityStyle}`}
+                      className={`block rounded-2xl border p-4 transition hover:shadow-sm ${severityStyle}`}
                     >
 
                       <div className="flex items-start justify-between gap-4">
@@ -494,11 +608,11 @@ export default function AdminDashboard() {
 
                           <div>
 
-                            <h3 className="font-semibold text-white">
+                            <h3 className="font-semibold text-[#123247]">
                               {anomaly.title}
                             </h3>
 
-                            <p className="mt-1 text-sm text-slate-400">
+                            <p className="mt-1 text-sm text-[#718895]">
                               {anomaly.location}
                             </p>
 
@@ -514,7 +628,7 @@ export default function AdminDashboard() {
 
                       </div>
 
-                      <p className="mt-3 text-xs text-slate-500">
+                      <p className="mt-3 text-xs text-[#8AA3AF]">
                         {anomaly.time}
                       </p>
 
@@ -528,7 +642,16 @@ export default function AdminDashboard() {
 
             {/* Sensors */}
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900 p-7">
+            <div
+              className="
+                rounded-3xl
+                border
+                border-[#CFE5EE]
+                bg-white
+                p-7
+                shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              "
+            >
 
               <div className="flex items-start justify-between">
 
@@ -536,18 +659,22 @@ export default function AdminDashboard() {
 
                   <div className="flex items-center gap-3">
 
-                    <Radio
-                      size={23}
-                      className="text-blue-400"
-                    />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50">
 
-                    <h2 className="text-2xl font-bold text-white">
+                      <Radio
+                        size={22}
+                        className="text-blue-600"
+                      />
+
+                    </div>
+
+                    <h2 className="text-2xl font-bold text-[#123247]">
                       Sensor Status
                     </h2>
 
                   </div>
 
-                  <p className="mt-2 text-sm text-slate-400">
+                  <p className="mt-2 text-sm text-[#718895]">
                     Connected sensor nodes and latest readings.
                   </p>
 
@@ -555,7 +682,7 @@ export default function AdminDashboard() {
 
                 <Link
                   href="/admin/sensors"
-                  className="flex items-center gap-1 text-sm font-medium text-cyan-400 transition hover:text-cyan-300"
+                  className="flex items-center gap-1 text-sm font-medium text-cyan-600 transition hover:text-cyan-500"
                 >
                   Manage
                   <ArrowUpRight size={16} />
@@ -567,25 +694,34 @@ export default function AdminDashboard() {
 
                 {sensors.map((sensor) => {
 
-                  const online =
-                    sensor.status === "Online";
+                  const online = sensor.status === "Online";
 
                   return (
                     <Link
                       href="/admin/sensors"
                       key={sensor.name}
-                      className="block rounded-2xl border border-slate-800 bg-slate-950/70 p-4 transition hover:border-blue-500/30 hover:bg-slate-950"
+                      className="
+                        block
+                        rounded-2xl
+                        border
+                        border-[#DCECF2]
+                        bg-[#F7FCFE]
+                        p-4
+                        transition
+                        hover:border-blue-200
+                        hover:bg-blue-50/50
+                      "
                     >
 
                       <div className="flex items-center justify-between gap-4">
 
                         <div className="min-w-0">
 
-                          <h3 className="truncate font-semibold text-white">
+                          <h3 className="truncate font-semibold text-[#123247]">
                             {sensor.name}
                           </h3>
 
-                          <p className="mt-1 text-sm text-slate-500">
+                          <p className="mt-1 text-sm text-[#718895]">
                             {sensor.location}
                           </p>
 
@@ -606,8 +742,8 @@ export default function AdminDashboard() {
                             <span
                               className={`text-xs font-semibold ${
                                 online
-                                  ? "text-emerald-400"
-                                  : "text-red-400"
+                                  ? "text-emerald-600"
+                                  : "text-red-600"
                               }`}
                             >
                               {sensor.status}
@@ -615,7 +751,7 @@ export default function AdminDashboard() {
 
                           </div>
 
-                          <p className="mt-1 text-sm font-semibold text-slate-300">
+                          <p className="mt-1 text-sm font-semibold text-[#52788C]">
                             {sensor.reading}
                           </p>
 
@@ -633,9 +769,21 @@ export default function AdminDashboard() {
 
           </section>
 
+          {/* ================================================= */}
           {/* ARGO DATA */}
+          {/* ================================================= */}
 
-          <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-7">
+          <section
+            className="
+              mt-8
+              rounded-3xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              p-7
+              shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+            "
+          >
 
             <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
 
@@ -643,18 +791,22 @@ export default function AdminDashboard() {
 
                 <div className="flex items-center gap-3">
 
-                  <Database
-                    size={23}
-                    className="text-cyan-400"
-                  />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50">
 
-                  <h2 className="text-2xl font-bold text-white">
+                    <Database
+                      size={22}
+                      className="text-cyan-600"
+                    />
+
+                  </div>
+
+                  <h2 className="text-2xl font-bold text-[#123247]">
                     ARGO Data
                   </h2>
 
                 </div>
 
-                <p className="mt-2 text-sm text-slate-400">
+                <p className="mt-2 text-sm text-[#718895]">
                   Cached ARGO profiles and synchronization status.
                 </p>
 
@@ -662,7 +814,24 @@ export default function AdminDashboard() {
 
               <Link
                 href="/admin/argo"
-                className="flex items-center justify-center gap-2 rounded-xl border border-cyan-500/40 px-5 py-3 text-sm font-semibold text-cyan-400 transition hover:border-cyan-400 hover:bg-cyan-500/5"
+                className="
+                  flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-xl
+                  border
+                  border-cyan-200
+                  bg-cyan-50
+                  px-5
+                  py-3
+                  text-sm
+                  font-semibold
+                  text-cyan-700
+                  transition
+                  hover:border-cyan-300
+                  hover:bg-cyan-100
+                "
               >
                 Manage ARGO Data
                 <ArrowUpRight size={17} />
@@ -674,14 +843,22 @@ export default function AdminDashboard() {
 
               <Link
                 href="/admin/argo"
-                className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5 transition hover:border-cyan-500/30"
+                className="
+                  rounded-2xl
+                  border
+                  border-[#DCECF2]
+                  bg-[#F7FCFE]
+                  p-5
+                  transition
+                  hover:border-cyan-200
+                "
               >
 
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#718895]">
                   Cached Profiles
                 </p>
 
-                <p className="mt-2 text-3xl font-bold text-white">
+                <p className="mt-2 text-3xl font-bold text-[#123247]">
                   4,500+
                 </p>
 
@@ -689,10 +866,18 @@ export default function AdminDashboard() {
 
               <Link
                 href="/admin/argo"
-                className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5 transition hover:border-emerald-500/30"
+                className="
+                  rounded-2xl
+                  border
+                  border-emerald-100
+                  bg-emerald-50/60
+                  p-5
+                  transition
+                  hover:border-emerald-200
+                "
               >
 
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#718895]">
                   Cache Status
                 </p>
 
@@ -700,7 +885,7 @@ export default function AdminDashboard() {
 
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
 
-                  <span className="text-xl font-bold text-emerald-400">
+                  <span className="text-xl font-bold text-emerald-600">
                     Healthy
                   </span>
 
@@ -710,14 +895,22 @@ export default function AdminDashboard() {
 
               <Link
                 href="/admin/argo"
-                className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5 transition hover:border-cyan-500/30"
+                className="
+                  rounded-2xl
+                  border
+                  border-[#DCECF2]
+                  bg-[#F7FCFE]
+                  p-5
+                  transition
+                  hover:border-cyan-200
+                "
               >
 
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#718895]">
                   Last Synchronization
                 </p>
 
-                <p className="mt-2 text-xl font-bold text-white">
+                <p className="mt-2 text-xl font-bold text-[#123247]">
                   Today, 10:42 AM
                 </p>
 
@@ -727,31 +920,51 @@ export default function AdminDashboard() {
 
           </section>
 
+          {/* ================================================= */}
           {/* REPORTS */}
+          {/* ================================================= */}
 
           <Link
             href="/admin/reports"
-            className="group mt-8 flex flex-col gap-4 rounded-3xl border border-slate-800 bg-slate-900 p-7 transition hover:border-purple-500/30 md:flex-row md:items-center md:justify-between"
+            className="
+              group
+              mt-8
+              flex
+              flex-col
+              gap-4
+              rounded-3xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              p-7
+              shadow-[0_8px_30px_rgba(30,90,110,0.06)]
+              transition
+              hover:border-purple-200
+              hover:shadow-lg
+              md:flex-row
+              md:items-center
+              md:justify-between
+            "
           >
 
             <div className="flex items-center gap-4">
 
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-50">
 
                 <FileWarning
                   size={23}
-                  className="text-purple-400"
+                  className="text-purple-600"
                 />
 
               </div>
 
               <div>
 
-                <h2 className="text-2xl font-bold text-white">
+                <h2 className="text-2xl font-bold text-[#123247]">
                   Research Reports
                 </h2>
 
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="mt-1 text-sm text-[#718895]">
                   Generate, review, and download OceanMind reports.
                 </p>
 
@@ -759,7 +972,7 @@ export default function AdminDashboard() {
 
             </div>
 
-            <div className="flex items-center gap-2 text-sm font-semibold text-purple-400">
+            <div className="flex items-center gap-2 text-sm font-semibold text-purple-600">
 
               Open Reports
 
@@ -771,6 +984,8 @@ export default function AdminDashboard() {
             </div>
 
           </Link>
+
+          <div className="h-10" />
 
         </div>
 

@@ -39,21 +39,6 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      /*
-       * Backend authentication
-       *
-       * Expected backend response:
-       *
-       * {
-       *   "success": true,
-       *   "user": {
-       *     "id": 1,
-       *     "email": "user@example.com",
-       *     "role": "user"
-       *   }
-       * }
-       */
-
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/auth/login`,
         {
@@ -79,7 +64,6 @@ export default function LoginPage() {
 
       /*
        * This page is for normal users.
-       *
        * The backend must verify the role.
        */
 
@@ -103,15 +87,17 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6 py-12 text-white">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#DCEFF7] px-6 py-12 text-[#123247]">
 
       {/* Background */}
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,#063b55_0%,#021525_45%,#020617_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#EAF8FC] via-[#DCEFF7] to-[#C9E8F4]" />
+
+      {/* Cyan glow */}
 
       <motion.div
         animate={{
-          x: [0, 80, 0],
+          x: [0, 70, 0],
           y: [0, -40, 0],
           scale: [1, 1.1, 1],
         }}
@@ -120,12 +106,14 @@ export default function LoginPage() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute left-[5%] top-[10%] h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[130px]"
+        className="pointer-events-none absolute left-[5%] top-[10%] h-[400px] w-[400px] rounded-full bg-cyan-300/25 blur-[130px]"
       />
+
+      {/* Blue glow */}
 
       <motion.div
         animate={{
-          x: [0, -80, 0],
+          x: [0, -70, 0],
           y: [0, 50, 0],
           scale: [1, 1.15, 1],
         }}
@@ -134,7 +122,7 @@ export default function LoginPage() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute bottom-[5%] right-[5%] h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[130px]"
+        className="pointer-events-none absolute bottom-[5%] right-[5%] h-[400px] w-[400px] rounded-full bg-blue-300/25 blur-[130px]"
       />
 
       {/* Main */}
@@ -160,35 +148,53 @@ export default function LoginPage() {
           href="/"
           className="mb-8 flex items-center justify-center gap-3"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/10">
+
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-cyan-100">
+
             <Waves
               size={28}
-              className="text-cyan-400"
+              className="text-cyan-500"
             />
+
           </div>
 
           <div>
-            <h1 className="text-2xl font-bold">
+
+            <h1 className="text-2xl font-bold text-[#123247]">
+
               Ocean
-              <span className="text-cyan-400">
+              <span className="text-cyan-500">
                 Mind
               </span>{" "}
               AI
+
             </h1>
 
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-[#71909F]">
               Ocean Intelligence Platform
             </p>
+
           </div>
+
         </Link>
 
         {/* Login Card */}
 
-        <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl md:p-10">
+        <div
+          className="
+            rounded-3xl
+            border
+            border-[#C9E4ED]
+            bg-white
+            p-8
+            shadow-[0_20px_60px_rgba(24,91,115,0.12)]
+            md:p-10
+          "
+        >
 
           {/* Login Type Selector */}
 
-          <div className="mb-7 rounded-xl border border-slate-800 bg-slate-950/60 p-1">
+          <div className="mb-7 rounded-xl border border-[#D6EAF1] bg-[#F4FBFD] p-1">
 
             <div className="grid grid-cols-2 gap-1">
 
@@ -196,7 +202,22 @@ export default function LoginPage() {
 
               <Link
                 href="/login"
-                className="flex items-center justify-center gap-2 rounded-lg bg-cyan-500 px-3 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/10 transition"
+                className="
+                  flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-lg
+                  bg-cyan-500
+                  px-3
+                  py-3
+                  text-sm
+                  font-semibold
+                  text-white
+                  shadow-md
+                  shadow-cyan-500/20
+                  transition
+                "
               >
                 <User size={17} />
                 User Login
@@ -206,7 +227,21 @@ export default function LoginPage() {
 
               <Link
                 href="/admin/login"
-                className="flex items-center justify-center gap-2 rounded-lg px-3 py-3 text-sm font-semibold text-slate-400 transition hover:bg-purple-500/10 hover:text-purple-400"
+                className="
+                  flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-lg
+                  px-3
+                  py-3
+                  text-sm
+                  font-semibold
+                  text-[#718895]
+                  transition
+                  hover:bg-cyan-50
+                  hover:text-cyan-600
+                "
               >
                 <ShieldCheck size={17} />
                 Admin Login
@@ -220,18 +255,20 @@ export default function LoginPage() {
 
           <div className="text-center">
 
-            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10">
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-50">
+
               <Lock
                 size={26}
-                className="text-cyan-400"
+                className="text-cyan-500"
               />
+
             </div>
 
-            <h2 className="text-3xl font-bold text-white">
+            <h2 className="text-3xl font-bold text-[#123247]">
               Welcome back
             </h2>
 
-            <p className="mt-3 text-sm leading-6 text-slate-400">
+            <p className="mt-3 text-sm leading-6 text-[#718895]">
               Sign in to continue exploring ocean intelligence.
             </p>
 
@@ -240,7 +277,7 @@ export default function LoginPage() {
           {/* Error */}
 
           {error && (
-            <div className="mt-6 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+            <div className="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
               {error}
             </div>
           )}
@@ -258,7 +295,7 @@ export default function LoginPage() {
 
               <label
                 htmlFor="email"
-                className="mb-2 block text-sm font-medium text-slate-300"
+                className="mb-2 block text-sm font-medium text-[#35596B]"
               >
                 Email address
               </label>
@@ -267,7 +304,7 @@ export default function LoginPage() {
 
                 <Mail
                   size={19}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8AA6B3]"
                 />
 
                 <input
@@ -279,7 +316,25 @@ export default function LoginPage() {
                   }
                   placeholder="you@example.com"
                   disabled={loading}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950/70 py-3.5 pl-11 pr-4 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#CFE5EE]
+                    bg-[#F8FCFE]
+                    py-3.5
+                    pl-11
+                    pr-4
+                    text-[#123247]
+                    outline-none
+                    transition
+                    placeholder:text-[#9CB3BE]
+                    focus:border-cyan-400
+                    focus:ring-4
+                    focus:ring-cyan-100
+                    disabled:cursor-not-allowed
+                    disabled:opacity-60
+                  "
                 />
 
               </div>
@@ -292,7 +347,7 @@ export default function LoginPage() {
 
               <label
                 htmlFor="password"
-                className="mb-2 block text-sm font-medium text-slate-300"
+                className="mb-2 block text-sm font-medium text-[#35596B]"
               >
                 Password
               </label>
@@ -301,7 +356,7 @@ export default function LoginPage() {
 
                 <Lock
                   size={19}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8AA6B3]"
                 />
 
                 <input
@@ -317,7 +372,25 @@ export default function LoginPage() {
                   }
                   placeholder="Enter your password"
                   disabled={loading}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950/70 py-3.5 pl-11 pr-12 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#CFE5EE]
+                    bg-[#F8FCFE]
+                    py-3.5
+                    pl-11
+                    pr-12
+                    text-[#123247]
+                    outline-none
+                    transition
+                    placeholder:text-[#9CB3BE]
+                    focus:border-cyan-400
+                    focus:ring-4
+                    focus:ring-cyan-100
+                    disabled:cursor-not-allowed
+                    disabled:opacity-60
+                  "
                 />
 
                 <button
@@ -325,7 +398,15 @@ export default function LoginPage() {
                   onClick={() =>
                     setShowPassword(!showPassword)
                   }
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-cyan-400"
+                  className="
+                    absolute
+                    right-4
+                    top-1/2
+                    -translate-y-1/2
+                    text-[#8AA6B3]
+                    transition
+                    hover:text-cyan-500
+                  "
                   aria-label={
                     showPassword
                       ? "Hide password"
@@ -345,11 +426,17 @@ export default function LoginPage() {
 
             {/* Remember Me */}
 
-            <label className="flex cursor-pointer items-center gap-3 text-sm text-slate-400">
+            <label className="flex cursor-pointer items-center gap-3 text-sm text-[#718895]">
 
               <input
                 type="checkbox"
-                className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-cyan-400"
+                className="
+                  h-4
+                  w-4
+                  rounded
+                  border-[#CFE5EE]
+                  accent-cyan-500
+                "
               />
 
               Remember me
@@ -361,7 +448,30 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="group flex w-full items-center justify-center gap-3 rounded-xl bg-cyan-500 px-6 py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(6,182,212,0.15)] transition duration-300 hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-60"
+              className="
+                group
+                flex
+                w-full
+                items-center
+                justify-center
+                gap-3
+                rounded-xl
+                bg-gradient-to-r
+                from-cyan-500
+                to-blue-500
+                px-6
+                py-3.5
+                font-semibold
+                text-white
+                shadow-lg
+                shadow-cyan-500/20
+                transition
+                duration-300
+                hover:from-cyan-400
+                hover:to-blue-400
+                disabled:cursor-not-allowed
+                disabled:opacity-60
+              "
             >
 
               {loading
@@ -381,15 +491,24 @@ export default function LoginPage() {
 
           {/* Create Account */}
 
-          <div className="mt-8 border-t border-slate-800 pt-7 text-center">
+          <div className="mt-8 border-t border-[#E1EEF3] pt-7 text-center">
 
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-[#8AA0AB]">
               Don't have an OceanMind account?
             </p>
 
             <Link
               href="/login?mode=register"
-              className="mt-3 inline-flex items-center gap-2 font-semibold text-cyan-400 transition hover:text-cyan-300"
+              className="
+                mt-3
+                inline-flex
+                items-center
+                gap-2
+                font-semibold
+                text-cyan-600
+                transition
+                hover:text-cyan-500
+              "
             >
               <UserPlus size={17} />
               Create an account
@@ -405,7 +524,12 @@ export default function LoginPage() {
 
           <Link
             href="/"
-            className="text-sm text-slate-500 transition hover:text-cyan-400"
+            className="
+              text-sm
+              text-[#718895]
+              transition
+              hover:text-cyan-600
+            "
           >
             ← Back to OceanMind
           </Link>

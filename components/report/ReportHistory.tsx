@@ -32,22 +32,40 @@ const reports = [
 
 export default function ReportHistory() {
   return (
-    <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8">
+    <section>
 
-      <div className="flex items-center gap-3 mb-8">
+      {/* Header */}
 
-        <FileText
-          className="text-cyan-400"
-          size={28}
-        />
+      <div className="mb-8 flex items-center gap-3">
+
+        <div
+          className="
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-2xl
+            bg-gradient-to-br
+            from-cyan-400
+            to-blue-500
+            shadow-lg
+            shadow-cyan-500/20
+          "
+        >
+          <FileText
+            className="text-white"
+            size={24}
+          />
+        </div>
 
         <div>
 
-          <h2 className="text-3xl font-bold text-white">
+          <h2 className="text-3xl font-bold text-[#123247]">
             Recent Reports
           </h2>
 
-          <p className="text-slate-400 mt-1">
+          <p className="mt-1 text-sm text-[#718895]">
             Previously generated AI reports.
           </p>
 
@@ -55,26 +73,44 @@ export default function ReportHistory() {
 
       </div>
 
-      <div className="space-y-5">
+      {/* Reports */}
+
+      <div className="space-y-4">
 
         {reports.map((report) => (
 
           <div
             key={report.title}
-            className="rounded-2xl border border-slate-800 bg-slate-950 p-5 hover:border-cyan-500 transition"
+            className="
+              rounded-2xl
+              border
+              border-[#CFE5EE]
+              bg-white
+              p-5
+              shadow-[0_6px_25px_rgba(30,90,110,0.05)]
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:border-cyan-200
+              hover:shadow-[0_10px_30px_rgba(6,182,212,0.09)]
+            "
           >
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-4">
 
-              <div>
+              {/* Report information */}
 
-                <h3 className="text-lg font-semibold text-white">
+              <div className="min-w-0">
+
+                <h3 className="truncate text-lg font-semibold text-[#123247]">
                   {report.title}
                 </h3>
 
-                <div className="flex items-center gap-4 mt-3 text-sm text-slate-400">
+                <div className="mt-3 flex flex-wrap items-center gap-4 text-sm">
 
-                  <div className="flex items-center gap-2">
+                  {/* Date */}
+
+                  <div className="flex items-center gap-2 text-[#718895]">
 
                     <Clock3 size={15} />
 
@@ -82,7 +118,9 @@ export default function ReportHistory() {
 
                   </div>
 
-                  <div className="flex items-center gap-2 text-green-400">
+                  {/* Status */}
+
+                  <div className="flex items-center gap-2 font-medium text-emerald-600">
 
                     <CheckCircle2 size={15} />
 
@@ -94,9 +132,36 @@ export default function ReportHistory() {
 
               </div>
 
-              <button className="flex items-center gap-2 rounded-xl bg-cyan-500 px-4 py-3 hover:bg-cyan-400 transition">
+              {/* Download */}
 
-                <Download size={18} />
+              <button
+                type="button"
+                className="
+                  flex
+                  shrink-0
+                  items-center
+                  gap-2
+                  rounded-xl
+                  bg-gradient-to-r
+                  from-cyan-500
+                  to-blue-500
+                  px-4
+                  py-3
+                  text-sm
+                  font-semibold
+                  text-white
+                  shadow-md
+                  shadow-cyan-500/15
+                  transition-all
+                  duration-200
+                  hover:-translate-y-0.5
+                  hover:from-cyan-400
+                  hover:to-blue-400
+                  hover:shadow-lg
+                "
+              >
+
+                <Download size={17} />
 
                 PDF
 
@@ -110,6 +175,6 @@ export default function ReportHistory() {
 
       </div>
 
-    </div>
+    </section>
   );
 }

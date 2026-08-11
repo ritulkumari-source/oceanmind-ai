@@ -23,36 +23,83 @@ const data = [
 
 export default function AnalyticsCard() {
   return (
-    <Card className="bg-slate-900/70 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-xl">
-
+    <Card
+      className="
+        overflow-hidden
+        rounded-2xl
+        border
+        border-[#D8EAF0]
+        bg-white
+        shadow-[0_8px_30px_rgba(30,90,110,0.07)]
+        transition-all
+        duration-300
+        hover:border-cyan-200
+        hover:shadow-[0_12px_35px_rgba(6,182,212,0.10)]
+      "
+    >
       <CardContent className="p-6">
 
-        <div className="flex items-center justify-between mb-6">
+        {/* Header */}
+
+        <div className="mb-6 flex items-start justify-between gap-4">
 
           <div>
 
-            <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-              <TrendingUp className="text-cyan-400" />
+            <h2 className="flex items-center gap-2 text-2xl font-bold text-[#0F2D3D]">
+
+              <TrendingUp
+                size={24}
+                className="text-cyan-500"
+              />
+
               Ocean Temperature Trend
+
             </h2>
 
-            <p className="text-slate-400 mt-2">
+            <p className="mt-2 text-sm text-[#718895]">
               Weekly sea surface temperature analysis
             </p>
 
           </div>
 
-          <div className="bg-green-500/10 text-green-400 px-4 py-2 rounded-xl font-semibold">
+          {/* Trend */}
+
+          <div
+            className="
+              shrink-0
+              rounded-xl
+              border
+              border-emerald-100
+              bg-emerald-50
+              px-4
+              py-2
+              font-semibold
+              text-emerald-600
+            "
+          >
             ▲ +2.4%
           </div>
 
         </div>
 
-        <div className="h-[320px]">
+        {/* Chart */}
 
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-[280px]">
 
-            <AreaChart data={data}>
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+          >
+
+            <AreaChart
+              data={data}
+              margin={{
+                top: 10,
+                right: 10,
+                left: -20,
+                bottom: 0,
+              }}
+            >
 
               <defs>
 
@@ -63,16 +110,17 @@ export default function AnalyticsCard() {
                   x2="0"
                   y2="1"
                 >
+
                   <stop
                     offset="5%"
-                    stopColor="#06b6d4"
-                    stopOpacity={0.8}
+                    stopColor="#06B6D4"
+                    stopOpacity={0.30}
                   />
 
                   <stop
                     offset="95%"
-                    stopColor="#06b6d4"
-                    stopOpacity={0}
+                    stopColor="#3B82F6"
+                    stopOpacity={0.02}
                   />
 
                 </linearGradient>
@@ -81,17 +129,49 @@ export default function AnalyticsCard() {
 
               <XAxis
                 dataKey="day"
-                stroke="#94a3b8"
+                axisLine={false}
+                tickLine={false}
+                tick={{
+                  fill: "#718895",
+                  fontSize: 12,
+                }}
               />
 
-              <Tooltip />
+              <Tooltip
+                cursor={{
+                  stroke: "#A5E8F2",
+                  strokeWidth: 1,
+                }}
+                contentStyle={{
+                  backgroundColor: "#FFFFFF",
+                  border: "1px solid #D8EAF0",
+                  borderRadius: "12px",
+                  boxShadow: "0 8px 25px rgba(30,90,110,0.10)",
+                }}
+                labelStyle={{
+                  color: "#0F2D3D",
+                  fontWeight: 600,
+                }}
+              />
 
               <Area
                 type="monotone"
                 dataKey="temp"
-                stroke="#06b6d4"
-                strokeWidth={4}
+                stroke="#06B6D4"
+                strokeWidth={3}
                 fill="url(#colorTemp)"
+                dot={{
+                  r: 3,
+                  fill: "#06B6D4",
+                  stroke: "#FFFFFF",
+                  strokeWidth: 2,
+                }}
+                activeDot={{
+                  r: 5,
+                  fill: "#3B82F6",
+                  stroke: "#FFFFFF",
+                  strokeWidth: 2,
+                }}
               />
 
             </AreaChart>
@@ -100,8 +180,37 @@ export default function AnalyticsCard() {
 
         </div>
 
-      </CardContent>
+        {/* Bottom information */}
 
+        <div className="mt-4 flex items-center justify-between border-t border-[#E5F0F4] pt-4">
+
+          <div>
+
+            <p className="text-xs text-[#8AA4B0]">
+              Average temperature
+            </p>
+
+            <p className="mt-1 text-lg font-bold text-[#0F2D3D]">
+              28.6°C
+            </p>
+
+          </div>
+
+          <div className="text-right">
+
+            <p className="text-xs text-[#8AA4B0]">
+              Peak temperature
+            </p>
+
+            <p className="mt-1 text-lg font-bold text-cyan-600">
+              31°C
+            </p>
+
+          </div>
+
+        </div>
+
+      </CardContent>
     </Card>
   );
 }

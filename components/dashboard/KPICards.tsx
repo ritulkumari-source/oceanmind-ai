@@ -15,39 +15,31 @@ const stats = [
     title: "Ocean Records",
     value: 1800000,
     suffix: "+",
-    display: "1.8M+",
     icon: Database,
-    color: "text-cyan-400",
   },
   {
     title: "ARGO Floats",
     value: 4500,
     suffix: "+",
-    display: "4500+",
     icon: Waves,
-    color: "text-blue-400",
   },
   {
     title: "Countries",
     value: 190,
     suffix: "+",
-    display: "190+",
     icon: Globe2,
-    color: "text-green-400",
   },
   {
     title: "AI Accuracy",
     value: 98,
     suffix: "%",
-    display: "98%",
     icon: BrainCircuit,
-    color: "text-purple-400",
   },
 ];
 
 export default function KPICards() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
 
       {stats.map((item, index) => {
         const Icon = item.icon;
@@ -55,26 +47,78 @@ export default function KPICards() {
         return (
           <motion.div
             key={item.title}
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.15 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: index * 0.15,
+            }}
             whileHover={{
-              scale: 1.03,
+              y: -4,
+              scale: 1.02,
             }}
           >
-            <Card className="bg-slate-900 border border-slate-800 hover:border-cyan-500 transition-all duration-300 rounded-2xl shadow-lg">
 
-              <CardContent className="p-6">
+            <Card
+              className="
+                relative
+                overflow-hidden
+                rounded-2xl
+                border
+                border-[#D8EAF0]
+                bg-white
+                shadow-[0_8px_30px_rgba(30,90,110,0.08)]
+                transition-all
+                duration-300
+                hover:border-cyan-300
+                hover:shadow-[0_12px_35px_rgba(6,182,212,0.15)]
+              "
+            >
 
-                <div className="flex justify-between items-start">
+              {/* Subtle gradient glow */}
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  -right-12
+                  -top-12
+                  h-32
+                  w-32
+                  rounded-full
+                  bg-gradient-to-br
+                  from-cyan-200/40
+                  to-blue-200/20
+                  blur-2xl
+                "
+              />
+
+              <CardContent className="relative p-6">
+
+                <div className="flex items-start justify-between">
+
+                  {/* Information */}
 
                   <div>
 
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-sm font-medium text-[#718895]">
                       {item.title}
                     </p>
 
-                    <h2 className={`text-4xl font-bold mt-4 ${item.color}`}>
+                    <h2
+                      className="
+                        mt-4
+                        text-4xl
+                        font-bold
+                        tracking-tight
+                        text-[#0F2D3D]
+                      "
+                    >
 
                       {item.title === "Ocean Records" ? (
                         <>
@@ -107,18 +151,64 @@ export default function KPICards() {
 
                   </div>
 
-                  <div className="bg-cyan-500/10 p-4 rounded-xl">
+                  {/* Icon */}
+
+                  <div
+                    className="
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      bg-gradient-to-br
+                      from-cyan-50
+                      to-blue-50
+                      ring-1
+                      ring-cyan-100
+                    "
+                  >
+
                     <Icon
-                      size={30}
-                      className={item.color}
+                      size={28}
+                      strokeWidth={1.8}
+                      className="text-cyan-500"
                     />
+
                   </div>
+
+                </div>
+
+                {/* Bottom gradient */}
+
+                <div className="mt-6 h-1 overflow-hidden rounded-full bg-[#EAF6FA]">
+
+                  <motion.div
+                    initial={{
+                      width: 0,
+                    }}
+                    animate={{
+                      width: "60%",
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      delay: index * 0.15 + 0.4,
+                    }}
+                    className="
+                      h-full
+                      rounded-full
+                      bg-gradient-to-r
+                      from-cyan-400
+                      to-blue-500
+                    "
+                  />
 
                 </div>
 
               </CardContent>
 
             </Card>
+
           </motion.div>
         );
       })}
