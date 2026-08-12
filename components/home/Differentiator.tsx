@@ -68,15 +68,60 @@ const highlights = [
 
 export default function Differentiator() {
   return (
-    <section className="relative overflow-hidden bg-slate-950 px-6 py-28">
+    <section className="relative overflow-hidden bg-[#DCEFF7] px-6 py-28">
 
-      {/* Background */}
+      {/* ================================================= */}
+      {/* BACKGROUND EFFECTS */}
+      {/* ================================================= */}
 
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-cyan-500/5 blur-[150px]" />
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/3
+          h-[600px]
+          w-[700px]
+          -translate-x-1/2
+          rounded-full
+          bg-cyan-300/20
+          blur-[150px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -left-40
+          top-20
+          h-80
+          w-80
+          rounded-full
+          bg-blue-300/20
+          blur-[120px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-40
+          bottom-20
+          h-80
+          w-80
+          rounded-full
+          bg-cyan-300/20
+          blur-[120px]
+        "
+      />
 
       <div className="relative mx-auto max-w-7xl">
 
-        {/* Heading */}
+        {/* ================================================= */}
+        {/* HEADING */}
+        {/* ================================================= */}
 
         <motion.div
           initial={{
@@ -97,25 +142,67 @@ export default function Differentiator() {
           className="mx-auto max-w-3xl text-center"
         >
 
-          <div className="mb-5 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/5 px-4 py-2 text-sm font-medium text-cyan-300">
+          {/* Badge */}
+
+          <div
+            className="
+              mb-5
+              inline-flex
+              rounded-full
+              border
+              border-cyan-200
+              bg-white/70
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-cyan-700
+              shadow-sm
+            "
+          >
             Why OceanMind is Different
           </div>
 
-          <h2 className="text-4xl font-black tracking-tight text-white md:text-6xl">
+          {/* Heading */}
 
+          <h2
+            className="
+              text-4xl
+              font-black
+              tracking-tight
+              text-[#123247]
+              md:text-6xl
+            "
+          >
             Don't just see
 
-            <span className="text-cyan-400">
+            <span
+              className="
+                bg-gradient-to-r
+                from-cyan-500
+                to-blue-500
+                bg-clip-text
+                text-transparent
+              "
+            >
               {" "}ocean data.
             </span>
 
             <br />
 
             Understand it.
-
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-400">
+          {/* Description */}
+
+          <p
+            className="
+              mt-6
+              text-lg
+              leading-8
+              text-[#66818F]
+            "
+          >
             Traditional ocean-data workflows often require multiple tools,
             manual analysis and significant time. OceanMind brings those
             capabilities together around an intelligent workflow.
@@ -123,7 +210,9 @@ export default function Differentiator() {
 
         </motion.div>
 
-        {/* Comparison */}
+        {/* ================================================= */}
+        {/* COMPARISON */}
+        {/* ================================================= */}
 
         <motion.div
           initial={{
@@ -141,22 +230,66 @@ export default function Differentiator() {
           transition={{
             duration: 0.8,
           }}
-          className="mt-16 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/60"
+          className="
+            mt-16
+            overflow-hidden
+            rounded-3xl
+            border
+            border-[#C7E1EA]
+            bg-white
+            shadow-[0_20px_60px_rgba(23,93,117,0.10)]
+          "
         >
 
           {/* Table Header */}
 
-          <div className="grid grid-cols-3 border-b border-slate-800 bg-slate-900/80 p-5 md:p-6">
+          <div
+            className="
+              grid
+              grid-cols-3
+              border-b
+              border-[#DCECF2]
+              bg-gradient-to-r
+              from-[#F7FCFE]
+              to-[#EDF9FC]
+              p-5
+              md:p-6
+            "
+          >
 
-            <div className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+            <div
+              className="
+                text-sm
+                font-semibold
+                uppercase
+                tracking-wider
+                text-[#8AA3AF]
+              "
+            >
               Capability
             </div>
 
-            <div className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+            <div
+              className="
+                text-sm
+                font-semibold
+                uppercase
+                tracking-wider
+                text-[#8AA3AF]
+              "
+            >
               Traditional Workflow
             </div>
 
-            <div className="text-sm font-semibold uppercase tracking-wider text-cyan-400">
+            <div
+              className="
+                text-sm
+                font-semibold
+                uppercase
+                tracking-wider
+                text-cyan-600
+              "
+            >
               OceanMind AI
             </div>
 
@@ -179,29 +312,62 @@ export default function Differentiator() {
               transition={{
                 delay: index * 0.08,
               }}
-              className="grid grid-cols-3 border-b border-slate-800/70 p-5 last:border-b-0 md:p-6"
+              className="
+                grid
+                grid-cols-3
+                border-b
+                border-[#E5F0F4]
+                p-5
+                last:border-b-0
+                hover:bg-[#F8FCFE]
+                transition-colors
+                md:p-6
+              "
             >
 
-              <div className="font-medium text-slate-200">
+              {/* Feature */}
+
+              <div className="font-medium text-[#23485A]">
                 {item.feature}
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-slate-500">
+              {/* Traditional */}
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  text-sm
+                  text-[#8196A1]
+                "
+              >
 
                 <X
                   size={16}
-                  className="hidden text-red-400 sm:block"
+                  className="hidden shrink-0 text-red-400 sm:block"
                 />
 
                 {item.traditional}
 
               </div>
 
-              <div className="flex items-center gap-2 text-sm font-medium text-cyan-300">
+              {/* OceanMind */}
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  text-sm
+                  font-semibold
+                  text-cyan-600
+                "
+              >
 
                 <Check
                   size={16}
-                  className="hidden text-green-400 sm:block"
+                  className="hidden shrink-0 text-emerald-500 sm:block"
                 />
 
                 {item.oceanmind}
@@ -213,11 +379,14 @@ export default function Differentiator() {
 
         </motion.div>
 
-        {/* Highlights */}
+        {/* ================================================= */}
+        {/* HIGHLIGHTS */}
+        {/* ================================================= */}
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 
           {highlights.map((item, index) => {
+
             const Icon = item.icon;
 
             return (
@@ -242,23 +411,66 @@ export default function Differentiator() {
                 whileHover={{
                   y: -6,
                 }}
-                className="rounded-3xl border border-slate-800 bg-slate-900/50 p-7 transition hover:border-cyan-500/30"
+                className="
+                  rounded-3xl
+                  border
+                  border-[#C7E1EA]
+                  bg-white
+                  p-7
+                  shadow-[0_12px_35px_rgba(23,93,117,0.07)]
+                  transition-all
+                  duration-300
+                  hover:border-cyan-300
+                  hover:shadow-[0_18px_40px_rgba(6,182,212,0.12)]
+                "
               >
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/10">
+                {/* Icon */}
+
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    bg-gradient-to-br
+                    from-cyan-50
+                    to-blue-50
+                  "
+                >
 
                   <Icon
                     size={24}
-                    className="text-cyan-400"
+                    className="text-cyan-600"
                   />
 
                 </div>
 
-                <h3 className="mt-6 text-lg font-bold text-white">
+                {/* Title */}
+
+                <h3
+                  className="
+                    mt-6
+                    text-lg
+                    font-bold
+                    text-[#123247]
+                  "
+                >
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-400">
+                {/* Description */}
+
+                <p
+                  className="
+                    mt-3
+                    text-sm
+                    leading-6
+                    text-[#718895]
+                  "
+                >
                   {item.description}
                 </p>
 
@@ -268,7 +480,9 @@ export default function Differentiator() {
 
         </div>
 
-        {/* Bottom statement */}
+        {/* ================================================= */}
+        {/* BOTTOM STATEMENT */}
+        {/* ================================================= */}
 
         <motion.div
           initial={{
@@ -283,28 +497,54 @@ export default function Differentiator() {
           transition={{
             duration: 0.8,
           }}
-          className="mt-16 flex flex-col items-center justify-center text-center"
+          className="
+            mt-16
+            flex
+            flex-col
+            items-center
+            justify-center
+            text-center
+          "
         >
 
-          <p className="max-w-3xl text-2xl font-semibold leading-10 text-white md:text-3xl">
-
+          <p
+            className="
+              max-w-3xl
+              text-2xl
+              font-semibold
+              leading-10
+              text-[#123247]
+              md:text-3xl
+            "
+          >
             One platform.
 
-            <span className="text-cyan-400">
+            <span
+              className="
+                bg-gradient-to-r
+                from-cyan-500
+                to-blue-500
+                bg-clip-text
+                text-transparent
+              "
+            >
               {" "}One intelligent workflow.
             </span>
 
             <br />
 
-            <span className="text-slate-500">
+            <span className="text-[#7C96A2]">
               A smarter way to understand our oceans.
             </span>
-
           </p>
 
           <ArrowRight
             size={28}
-            className="mt-6 rotate-90 text-cyan-400"
+            className="
+              mt-6
+              rotate-90
+              text-cyan-500
+            "
           />
 
         </motion.div>
